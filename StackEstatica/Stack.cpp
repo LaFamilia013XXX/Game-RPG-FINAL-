@@ -58,3 +58,9 @@ void Stack::Top(int &x) {
 int Stack::Size(){
     return top;
 }
+
+void Stack::exibirStack(){
+    for(int i=0; i<top; i++){
+        cout << Entry[i] << endl;
+    }
+}

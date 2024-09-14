@@ -14,10 +14,10 @@ class Stack {
         void Clear();
         void Top(int &x);
         int Size();
+        void exibirStack();
     private:
         int top;
         int Entry[MaxStack-1];
 };
 
 #endif
-
