@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-
+// Criando os inimigos do RPG;
 enum TipoInimigo {
     TIPO1,
     TIPO2,
@@ -38,6 +38,12 @@ class Inimigo_generico {
         CriandoInimigo inimigos[NUM_TIPOS_DE_INIMIGOS];
         void iniciandoInimigo();
 };
+
+// Estruturas de orgnaização
+
+
+
+
 
 
 class Mochila
