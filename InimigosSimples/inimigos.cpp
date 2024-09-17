@@ -1,9 +1,4 @@
-#include "rpg.h"
-#include <iostream>
-using namespace std;
-#ifndef RPG_H
-#define RPG_H
-
+#include "inimigos.h"
 
 Inimigo_generico::Inimigo_generico(){
     iniciandoInimigo();
@@ -30,21 +25,3 @@ int Inimigo_generico::dano(TipoInimigo tipoInimigo) const {
 int Inimigo_generico::barraVida(TipoInimigo tipoInimigo) const {
     return inimigos[tipoInimigo].barraVida;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif
