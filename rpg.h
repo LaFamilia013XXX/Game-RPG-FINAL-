@@ -39,7 +39,96 @@ class Inimigo_generico {
         void iniciandoInimigo();
 };
 
-// Estruturas de orgnaização
+
+
+
+// Estruturas de organização
+
+// Lista Estatica
+const int MaxList = 100;
+class List {
+    public:
+        List();
+        ~List();
+        bool Empty();
+        bool Full();
+        void Insert(int p, int x);
+        void Delete(int p, int &x);
+        void Retrieve(int p, int &x);
+        void Replace(int p, int x);
+        void Clear();
+        int Size();
+        void exibirList();
+    private:
+        int count;
+        int Entry[MaxList+1]; 
+
+};
+
+// Stack Dinamica
+class StackDinamica {
+    public:
+        StackDinamica();
+        ~StackDinamica();
+        bool Empty();
+        bool Full();
+        void Push(int x);
+        void Pop(int &x);
+        void Clear();
+        void Top(int &x);
+        int Size();
+    private:
+
+        struct StackNode {
+            int Entry;
+            StackNode *NextNode;
+        };
+
+        typedef StackNode *StackPointer;
+
+        StackPointer top;
+};   
+
+const int MaxStack = 100;
+class Stack {
+    public:
+        Stack();
+        ~Stack();
+        bool Empty();
+        bool Full();
+        void Push(int x);
+        void Pop(int &x);
+        void Clear();
+        void Top(int &x);
+        int Size();
+        void exibirStack();
+    private:
+        int top;
+        int Entry[MaxStack-1];
+};
+
+// Lista Ordenada
+class OrderedList{
+    public:
+        OrderedList();
+        ~OrderedList();
+        bool Empty();
+        void Insert(int x);
+        void Delete(int x);
+        int Search(int x); // Retornar 0, se x não ocorre na lista; // Senão retorna a posição da primeira ocorrência;
+        void Clear();
+        int Size();
+    private:
+        struct ListNode{
+            int Entry;
+            ListNode* NextNode;
+        };
+
+        typedef ListNode* ListPointer;
+        int count;
+        ListPointer head, sentinel;
+};
+
 
 
 
@@ -75,7 +164,6 @@ class Cinto
         void Slots(); // quais estão sendo usados e quais estão vazios
     private:
 };
-
 
 /*-------------------------------------------------------------------------------------------------------*/
 class Heroi
