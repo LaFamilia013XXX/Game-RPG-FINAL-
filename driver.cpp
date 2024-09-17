@@ -11,3 +11,5 @@ cout<< "Qual o seu nome Heroi ?"<< endl;
 cin>>nome<< endl;
 
 }
+
+
