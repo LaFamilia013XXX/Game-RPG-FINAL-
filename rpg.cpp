@@ -47,4 +47,6 @@ int Inimigo_generico::barraVida(TipoInimigo tipoInimigo) const {
 
 
 
+
+
 #endif
