@@ -6,31 +6,31 @@ using namespace std;
 class Mochila
  {
     public:
-    bool vazio(); //meu Empty se esta vazio ou quantos itens tem
-    bool cheio(); // tira os itens para serem usados
-    void InserirItens(int x); // coloca itens na mochila
-    void RemoverItens(int &x);//remove os itens da mochila
-    void Size();
-    void Top(); // mostra o primeiro elemento da pilha que esta no topo
-    void Clear(); // limpa os elementos da pilha
-private:
+        bool vazio(); //meu Empty se esta vazio ou quantos itens tem
+        bool cheio(); // tira os itens para serem usados
+        void InserirItens(int x); // coloca itens na mochila
+        void RemoverItens(int &x);//remove os itens da mochila
+        void Size();
+        void Top(); // mostra o primeiro elemento da pilha que esta no topo
+        void Clear(); // limpa os elementos da pilha
+    private:
 
 };
 /*-------------------------------------------------------------------------------------------------------*/
 class Cinto
 {
-public:
-cinto();
-~cinto();
-bool Empty(); // verifica se esta vazio
-int Size(); // quantidade de sl
-void VerItens(); // quais itens tem no cinto
-void RemoverItens(int &x); // meu pop usado para retirar itens do topo da pilha e usá-los ou descartá-los
-void InserirItens(int x); // meu push para inserir itens no topo da pilha
-bool Capacidade(); //
-void peso(); // 
-void Slots(); // quais estão sendo usados e quais estão vazios
-private:
+    public:
+        Cinto();
+        ~Cinto();
+        bool Empty(); // verifica se esta vazio
+        int Size(); // quantidade de sl
+        void VerItens(); // quais itens tem no cinto
+        void RemoverItens(int &x); // meu pop usado para retirar itens do topo da pilha e usá-los ou descartá-los
+        void InserirItens(int x); // meu push para inserir itens no topo da pilha
+        bool Capacidade(); //
+        void peso(); // 
+        void Slots(); // quais estão sendo usados e quais estão vazios
+    private:
 };
 
 
