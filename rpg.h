@@ -66,10 +66,10 @@ class List {
 };
 
 // Stack Dinamica
-class StackDinamica {
+class Mochila {
     public:
-        StackDinamica();
-        ~StackDinamica();
+        Mochila();
+        ~Mochila();
         bool Empty();
         bool Full();
         void Push(int x);
@@ -87,13 +87,15 @@ class StackDinamica {
         typedef StackNode *StackPointer;
 
         StackPointer top;
-};   
+};
 
-const int MaxStack = 100;
-class Stack {
+
+const int MaxStack = 4;
+const int MaxWeight = 100;
+class Cinto {
     public:
-        Stack();
-        ~Stack();
+        Cinto();
+        ~Cinto();
         bool Empty();
         bool Full();
         void Push(int x);
@@ -130,40 +132,7 @@ class OrderedList{
 };
 
 
-
-
-
-
-
-class Mochila
- {
-    public:
-        bool vazio(); //meu Empty se esta vazio ou quantos itens tem
-        bool cheio(); // tira os itens para serem usados
-        void InserirItens(int x); // coloca itens na mochila
-        void RemoverItens(int &x);//remove os itens da mochila
-        void Size();
-        void Top(); // mostra o primeiro elemento da pilha que esta no topo
-        void Clear(); // limpa os elementos da pilha
-    private:
-
-};
 /*-------------------------------------------------------------------------------------------------------*/
-class Cinto
-{
-    public:
-        Cinto();
-        ~Cinto();
-        bool Empty(); // verifica se esta vazio
-        int Size(); // quantidade de sl
-        void VerItens(); // quais itens tem no cinto
-        void RemoverItens(int &x); // meu pop usado para retirar itens do topo da pilha e usá-los ou descartá-los
-        void InserirItens(int x); // meu push para inserir itens no topo da pilha
-        bool Capacidade(); //
-        void peso(); // 
-        void Slots(); // quais estão sendo usados e quais estão vazios
-    private:
-};
 
 /*-------------------------------------------------------------------------------------------------------*/
 class Heroi
