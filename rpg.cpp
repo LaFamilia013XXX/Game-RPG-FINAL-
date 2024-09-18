@@ -1,5 +1,6 @@
 #include "rpg.h"
 #include <iostream>
+#include<string>
 using namespace std;
 #ifndef RPG_H
 #define RPG_H
@@ -160,7 +161,7 @@ void List::exibirList(){
 }
 
 
-// Stack Dinamica
+// Stack Mochila
 
 Mochila::Mochila(){
     top = NULL;
@@ -241,132 +242,7 @@ int Mochila::Size(){
 
 }
 
-
-// Stack Estatica
-
-// Cinto::Cinto() {
-//     top = 0;
-// }
-
-// Cinto::~Cinto() {
-//     cout << "Pilha destruinda" << endl;
-// }
-
-// bool Cinto::Empty() {
-//     return (top == 0);
-// }
-
-// bool Cinto::Full(){
-//     return ( top == MaxStack);
-// }
-
-// void Cinto::Push(int x) {
-//     if(Full()) {
-//         cout << "Pilha está cheia" << endl;
-//         abort();
-//     }
-
-//     top = top + 1;
-
-//     Entry[top] = x;
-// }
-
-// void Cinto::Pop(int &x) {
-//     if(Empty()){
-//         cout << "Pilha vazia" << endl;
-//         abort();
-//     }
-
-//     top = top - 1;
-
-//     x = Entry[top];
-// }
-
-// void Cinto::Clear() {
-//     top = 0;
-// }
-
-// void Cinto::Top(int &x) {
-//     if(Empty()) {
-//         cout << "Pilha vazia" << endl;
-//         abort();
-//     }
-
-//     x = Entry[top - 1];
-// }
-
-// int Cinto::Size(){
-//     return top;
-// }
-
-// void Cinto::exibirCinto(){
-//     for(int i=0; i<top; i++){
-//         cout << Entry[i] << endl;
-//     }
-// }
-
-// Lista Ordenada
-
-OrderedList::OrderedList(){
-    sentinel = new ListNode;
-    if(sentinel == NULL) {
-        cout << "Memoria Insuficiente!"<<endl;
-        abort();
-    }
-
-    head = sentinel;
-    count = 0;
-
-}
-
-OrderedList::~OrderedList(){
-    ListPointer q;
-    while(head != sentinel){ // Desaloca todos os conteudo até o último elemento;
-        q = head;
-        head = head->NextNode;
-        delete q;
-    }
-
-    delete sentinel; // Deleta o sentinel;
-}
-
-bool OrderedList::Empty(){
-    return head == sentinel;
-}
-
-int OrderedList::Size(){
-    return count;
-}
-
-void OrderedList::Insert(int x){
-    ListPointer p, q;
-    sentinel->Entry = x;
-    p = head;
-
-    while(p->Entry < x){
-        p = p->NextNode;
-    }
-
-    q = new ListNode;
-    if( q == NULL ){
-        cout << "Memoria insuficiente"<<endl;
-        abort();
-    }
-
-    if(p == sentinel){
-        p->NextNode = q;
-        sentinel = q;
-    }else{
-        *q = *p;
-        p->NextNode = q;
-        p->Entry = x;
-    }
-
-    count++;
-}
-
-
-
+// Stack Cinto
 
 Cinto::Cinto() {
     top = 0;
@@ -425,6 +301,8 @@ void Cinto::exibirCinto() {
 
 
 
+
+
 void Heroi::MostrandoTudo(){
 
 cout<< "Name" << Name <<endl;
@@ -450,6 +328,8 @@ if (HP>200) // verificacao da vida
 };
 
 };
+
+
 
 
 #endif

@@ -77,7 +77,7 @@ class Item {
 
 // Estruturas de organização
 
-// Lista Estatica
+// Mochila Usuario
 const int MaxList = 100;
 class List {
     public:
@@ -98,7 +98,7 @@ class List {
 
 };
 
-// Stack Dinamica
+// Mochila Usuario
 class Mochila {
     public:
         Mochila();
@@ -122,26 +122,6 @@ class Mochila {
         StackPointer top;
 };
 
-
-// const int MaxWeight = 100;
-// class Cinto {
-//     public:
-//         Cinto();
-//         ~Cinto();
-//         bool Empty();
-//         bool Full();
-//         void Push(int x);
-//         void Pop(int &x);
-//         void Clear();
-//         void Top(int &x);
-//         int Size();
-//         void exibirCinto();
-//     private:
-//         int top;
-//         int Entry[MaxStack-1];
-// };
-
-
 const int MaxStack = 4;
 class Cinto {
     public:
@@ -160,30 +140,6 @@ class Cinto {
         CriandoItem Entry[MaxStack]; // Armazena itens de `CriandoItem`
 };
 
-
-// Lista Ordenada
-class OrderedList{
-    public:
-        OrderedList();
-        ~OrderedList();
-        bool Empty();
-        void Insert(int x);
-        void Delete(int x);
-        int Search(int x); // Retornar 0, se x não ocorre na lista; // Senão retorna a posição da primeira ocorrência;
-        void Clear();
-        int Size();
-    private:
-        struct ListNode{
-            int Entry;
-            ListNode* NextNode;
-        };
-
-        typedef ListNode* ListPointer;
-        int count;
-        ListPointer head, sentinel;
-};
-
-/*-------------------------------------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------------------------------------------*/
 class Heroi
