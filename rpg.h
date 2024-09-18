@@ -103,7 +103,7 @@ class Cinto {
         void Clear();
         void Top(int &x);
         int Size();
-        void exibirStack();
+        void exibirCinto();
     private:
         int top;
         int Entry[MaxStack-1];
@@ -130,7 +130,6 @@ class OrderedList{
         int count;
         ListPointer head, sentinel;
 };
-
 
 /*-------------------------------------------------------------------------------------------------------*/
 

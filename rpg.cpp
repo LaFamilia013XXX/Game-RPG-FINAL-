@@ -122,26 +122,26 @@ void List::exibirList(){
 
 // Stack Dinamica
 
-StackDinamica::StackDinamica(){
+Mochila::Mochila(){
     top = NULL;
 }
 
-StackDinamica::~StackDinamica(){
+Mochila::~Mochila(){
     int x;
     while(!Empty()){
         Pop(x);
     }
 }
 
-bool StackDinamica::Empty(){
+bool Mochila::Empty(){
     return (top == NULL);
 }
 
-bool StackDinamica::Full(){
+bool Mochila::Full(){
     return false;
 }
 
-void StackDinamica::Push(int x){
+void Mochila::Push(int x){
     StackPointer p;
 
     p = new StackNode;
@@ -156,7 +156,7 @@ void StackDinamica::Push(int x){
     top = p;
 }
 
-void StackDinamica::Pop(int &x) { 
+void Mochila::Pop(int &x) { 
     StackPointer p;
 
     if (Empty())
@@ -170,7 +170,7 @@ void StackDinamica::Pop(int &x) {
     delete p;
 }
 
-void StackDinamica::Clear(){ 
+void Mochila::Clear(){ 
 
     int x;
     while(! Empty()){
@@ -178,7 +178,7 @@ void StackDinamica::Clear(){
     }
 }
 
-void StackDinamica::Top(int &x){ 
+void Mochila::Top(int &x){ 
     if(Empty()){ 
         cout << "Pilha vazia";
         abort();
@@ -187,7 +187,7 @@ void StackDinamica::Top(int &x){
     Push(x);
 }
 
-int StackDinamica::Size(){
+int Mochila::Size(){
     StackPointer p;
     int s=0;
 
@@ -204,23 +204,23 @@ int StackDinamica::Size(){
 
 // Stack Estatica
 
-Stack::Stack() {
+Cinto::Cinto() {
     top = 0;
 }
 
-Stack::~Stack() {
+Cinto::~Cinto() {
     cout << "Pilha destruinda" << endl;
 }
 
-bool Stack::Empty() {
+bool Cinto::Empty() {
     return (top == 0);
 }
 
-bool Stack::Full(){
+bool Cinto::Full(){
     return ( top == MaxStack);
 }
 
-void Stack::Push(int x) {
+void Cinto::Push(int x) {
     if(Full()) {
         cout << "Pilha está cheia" << endl;
         abort();
@@ -231,7 +231,7 @@ void Stack::Push(int x) {
     Entry[top] = x;
 }
 
-void Stack::Pop(int &x) {
+void Cinto::Pop(int &x) {
     if(Empty()){
         cout << "Pilha vazia" << endl;
         abort();
@@ -242,11 +242,11 @@ void Stack::Pop(int &x) {
     x = Entry[top];
 }
 
-void Stack::Clear() {
+void Cinto::Clear() {
     top = 0;
 }
 
-void Stack::Top(int &x) {
+void Cinto::Top(int &x) {
     if(Empty()) {
         cout << "Pilha vazia" << endl;
         abort();
@@ -255,11 +255,11 @@ void Stack::Top(int &x) {
     x = Entry[top - 1];
 }
 
-int Stack::Size(){
+int Cinto::Size(){
     return top;
 }
 
-void Stack::exibirStack(){
+void Cinto::exibirCinto(){
     for(int i=0; i<top; i++){
         cout << Entry[i] << endl;
     }
