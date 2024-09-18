@@ -40,6 +40,39 @@ class Inimigo_generico {
 };
 
 
+// Criando os Itens do RPG;
+enum Tipo {
+    POCAODECURA, // Cura o Heroi
+    POCAODEPODER, // da um UPP em tudo (HP, Ataque, Defesa, Agilidade e Luck)
+    POCAODEDEFESA, // aumenta tmeporariamente a defesa (escudo do heroi)
+    POCAODASORTE, // aumenta a sorte de dar crítico e/ou esquivar de um inimigo
+    ESPADA, // para o Barbaro
+    MACHADO, // para o Barbaro
+    VARINHA, //do mago
+    NUM_TIPOS_DE_ITENS
+};
+
+struct CriandoItem {
+    int Dano;
+    string Nome;
+    int Peso;
+    int Cura;
+    int Defesa;
+};
+
+class Item {
+    public:
+        Item();
+        int Dano(Tipo tipo) const;
+        string Nome(Tipo tipo) const;
+        int Peso(Tipo tipo) const;
+        int Cura(Tipo tipo) const;
+        int Defesa(Tipo tipo) const;
+    private:
+        CriandoItem itens[NUM_TIPOS_DE_ITENS];
+        void IniciandoItem();
+        
+};
 
 
 // Estruturas de organização
@@ -90,24 +123,43 @@ class Mochila {
 };
 
 
+// const int MaxWeight = 100;
+// class Cinto {
+//     public:
+//         Cinto();
+//         ~Cinto();
+//         bool Empty();
+//         bool Full();
+//         void Push(int x);
+//         void Pop(int &x);
+//         void Clear();
+//         void Top(int &x);
+//         int Size();
+//         void exibirCinto();
+//     private:
+//         int top;
+//         int Entry[MaxStack-1];
+// };
+
+
 const int MaxStack = 4;
-const int MaxWeight = 100;
 class Cinto {
     public:
         Cinto();
         ~Cinto();
         bool Empty();
         bool Full();
-        void Push(int x);
-        void Pop(int &x);
+        void Push(CriandoItem x);
+        void Pop(CriandoItem &x);
         void Clear();
-        void Top(int &x);
+        void Top(CriandoItem &x);
         int Size();
         void exibirCinto();
     private:
         int top;
-        int Entry[MaxStack-1];
+        CriandoItem Entry[MaxStack]; // Armazena itens de `CriandoItem`
 };
+
 
 // Lista Ordenada
 class OrderedList{
@@ -137,14 +189,16 @@ class OrderedList{
 class Heroi
 {
     public:
-    Heroi(int hp, int ataque,
+    Heroi(const string name,int hp, int ataque,
     int defesa, 
     int agilidade, 
     int luck, 
     string especial);
+void MostrandoTudo();
 
     ~Heroi(); //destrutor
     private:
+        const string Name;
         int HP;
         int Ataque;
         int Defesa;
@@ -152,7 +206,6 @@ class Heroi
         int Luck;
         string Especial;
 };
-
 /*-------------------------------------------------------------------------------------------------------*/
 
 class Itens{
@@ -184,4 +237,6 @@ Tipo tipo;
 int Nivel; // irao do 1 ao 5
 Raridade raridade;
 };
+/*-------------------------------------------------------------------------------------------------------*/
+
 /*-------------------------------------------------------------------------------------------------------*/

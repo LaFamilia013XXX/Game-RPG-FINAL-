@@ -34,6 +34,46 @@ int Inimigo_generico::barraVida(TipoInimigo tipoInimigo) const {
 }
 
 
+// Classes de itens e seu atributos;
+
+Item::Item(){
+    IniciandoItem();
+}
+
+void Item::IniciandoItem() {
+    itens[POCAODASORTE] = {10, "Porcao Sorte", 10, 10, 0};
+    itens[POCAODECURA] = {0, "Pocao Cura", 15, 30, 0};
+    itens[POCAODEDEFESA] = {0, "Pocao defesa", 20, 0, 30};
+    itens[POCAODEPODER] = {10, "Pocao Poder", 30, 10, 10};
+    itens[ESPADA] = {25, "Espada", 25, 0, 0};
+    itens[MACHADO] = {20, "Machado", 20, 0, 0};
+    itens[VARINHA] = {20, "Varinha", 20, 0, 0};
+};
+
+int Item::Dano(Tipo tipo) const {
+    return itens[tipo].Dano;
+}
+
+int Item::Cura(Tipo tipo) const {
+    return itens[tipo].Cura;
+}
+
+string Item::Nome(Tipo tipo) const {
+    return itens[tipo].Nome;
+}
+
+int Item::Defesa(Tipo tipo) const {
+    return itens[tipo].Defesa;
+}
+
+int Item::Peso(Tipo tipo) const {
+    return itens[tipo].Peso;
+}
+
+
+
+
+
 // Lista Estatica:
 
 List::List(){
@@ -204,68 +244,66 @@ int Mochila::Size(){
 
 // Stack Estatica
 
-Cinto::Cinto() {
-    top = 0;
-}
+// Cinto::Cinto() {
+//     top = 0;
+// }
 
-Cinto::~Cinto() {
-    cout << "Pilha destruinda" << endl;
-}
+// Cinto::~Cinto() {
+//     cout << "Pilha destruinda" << endl;
+// }
 
-bool Cinto::Empty() {
-    return (top == 0);
-}
+// bool Cinto::Empty() {
+//     return (top == 0);
+// }
 
-bool Cinto::Full(){
-    return ( top == MaxStack);
-}
+// bool Cinto::Full(){
+//     return ( top == MaxStack);
+// }
 
-void Cinto::Push(int x) {
-    if(Full()) {
-        cout << "Pilha está cheia" << endl;
-        abort();
-    }
+// void Cinto::Push(int x) {
+//     if(Full()) {
+//         cout << "Pilha está cheia" << endl;
+//         abort();
+//     }
 
-    top = top + 1;
+//     top = top + 1;
 
-    Entry[top] = x;
-}
+//     Entry[top] = x;
+// }
 
-void Cinto::Pop(int &x) {
-    if(Empty()){
-        cout << "Pilha vazia" << endl;
-        abort();
-    }
+// void Cinto::Pop(int &x) {
+//     if(Empty()){
+//         cout << "Pilha vazia" << endl;
+//         abort();
+//     }
 
-    top = top - 1;
+//     top = top - 1;
 
-    x = Entry[top];
-}
+//     x = Entry[top];
+// }
 
-void Cinto::Clear() {
-    top = 0;
-}
+// void Cinto::Clear() {
+//     top = 0;
+// }
 
-void Cinto::Top(int &x) {
-    if(Empty()) {
-        cout << "Pilha vazia" << endl;
-        abort();
-    }
+// void Cinto::Top(int &x) {
+//     if(Empty()) {
+//         cout << "Pilha vazia" << endl;
+//         abort();
+//     }
 
-    x = Entry[top - 1];
-}
+//     x = Entry[top - 1];
+// }
 
-int Cinto::Size(){
-    return top;
-}
+// int Cinto::Size(){
+//     return top;
+// }
 
-void Cinto::exibirCinto(){
-    for(int i=0; i<top; i++){
-        cout << Entry[i] << endl;
-    }
-}
-
-
+// void Cinto::exibirCinto(){
+//     for(int i=0; i<top; i++){
+//         cout << Entry[i] << endl;
+//     }
+// }
 
 // Lista Ordenada
 
@@ -330,8 +368,88 @@ void OrderedList::Insert(int x){
 
 
 
+Cinto::Cinto() {
+    top = 0;
+}
+
+Cinto::~Cinto() {
+    cout << "Pilha destruída" << endl;
+}
+
+bool Cinto::Empty() {
+    return (top == 0);
+}
+
+bool Cinto::Full() {
+    return (top == MaxStack);
+}
+
+void Cinto::Push(CriandoItem x) {
+    if (Full()) {
+        cout << "Pilha está cheia" << endl;
+    }
+    Entry[top] = x; // Armazena o valor e depois incrementa o topo
+    top = top + 1;
+}
+
+void Cinto::Pop(CriandoItem &x) {
+    if (Empty()) {
+        cout << "Pilha vazia" << endl;
+    }
+    top = top - 1; // Decrementa o topo e depois armazena o valor
+    x = Entry[top];
+}
+
+void Cinto::Clear() {
+    top = 0;
+}
+
+void Cinto::Top(CriandoItem &x) {
+    if (Empty()) {
+        cout << "Pilha vazia" << endl;
+        abort();
+    }
+    x = Entry[top - 1];
+}
+
+int Cinto::Size() {
+    return top;
+}
+
+void Cinto::exibirCinto() {
+    for (int i = 0; i < top; i++) {
+        cout << Entry[i].Nome << endl;
+    }
+}
 
 
+
+
+void Heroi::MostrandoTudo(){
+
+cout<< "Name" << Name <<endl;
+cout << " HP " << HP<<endl;
+cout << "Ataque" << Ataque <<endl;
+cout << "Defesa" << Defesa <<endl;
+cout << "Agilidade" << Agilidade <<endl;
+cout << "Luck" << Luck <<endl;
+cout << "Especial" << Especial <<endl;
+
+};
+
+Heroi::Heroi (const string name, int hp, int ataque, int defesa, int agilidade, int luck, string especial):
+Name (name), HP(hp), Ataque (ataque), Defesa (defesa), Agilidade (agilidade), Luck (luck), Especial (especial)
+{
+if (HP<0){ // fazendo verificacao da vida
+    HP = 0;
+};
+
+if (HP>200) // verificacao da vida
+{
+    HP = 200;
+};
+
+};
 
 
 #endif
