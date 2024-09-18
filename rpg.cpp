@@ -1,5 +1,6 @@
 #include "rpg.h"
 #include <iostream>
+#include<string>
 using namespace std;
 #ifndef RPG_H
 #define RPG_H
@@ -328,6 +329,31 @@ void OrderedList::Insert(int x){
 
 
 
+void Heroi::MostrandoTudo(){
+
+cout<< "Name" << Name <<endl;
+cout << " HP " << HP<<endl;
+cout << "Ataque" << Ataque <<endl;
+cout << "Defesa" << Defesa <<endl;
+cout << "Agilidade" << Agilidade <<endl;
+cout << "Luck" << Luck <<endl;
+cout << "Especial" << Especial <<endl;
+
+};
+
+Heroi::Heroi (const string name, int hp, int ataque, int defesa, int agilidade, int luck, string especial):
+Name (name), HP(hp), Ataque (ataque), Defesa (defesa), Agilidade (agilidade), Luck (luck), Especial (especial)
+{
+if (HP<0){ // fazendo verificacao da vida
+    HP = 0;
+};
+
+if (HP>200) // verificacao da vida
+{
+    HP = 200;
+};
+
+};
 
 
 

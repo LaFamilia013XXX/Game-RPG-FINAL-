@@ -132,19 +132,19 @@ class OrderedList{
 };
 
 /*-------------------------------------------------------------------------------------------------------*/
-
-/*-------------------------------------------------------------------------------------------------------*/
 class Heroi
 {
     public:
-    Heroi(int hp, int ataque,
+    Heroi(const string name,int hp, int ataque,
     int defesa, 
     int agilidade, 
     int luck, 
     string especial);
+void MostrandoTudo();
 
     ~Heroi(); //destrutor
     private:
+        const string Name;
         int HP;
         int Ataque;
         int Defesa;
@@ -152,7 +152,6 @@ class Heroi
         int Luck;
         string Especial;
 };
-
 /*-------------------------------------------------------------------------------------------------------*/
 
 class Itens{
