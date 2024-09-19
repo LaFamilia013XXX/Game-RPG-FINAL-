@@ -3,22 +3,52 @@
 using namespace std;
 
 int main(){
-    
-    Cinto cinto;
-    Item ItemCriador;
 
-    CriandoItem espada = {ItemCriador.Dano(ESPADA), ItemCriador.Nome(ESPADA), ItemCriador.Peso(ESPADA), ItemCriador.Cura(ESPADA), ItemCriador.Defesa(ESPADA)};
-    CriandoItem PocaoDeCura = {ItemCriador.Dano(POCAODECURA), ItemCriador.Nome(POCAODECURA), ItemCriador.Peso(POCAODECURA), ItemCriador.Cura(POCAODECURA), ItemCriador.Defesa(POCAODECURA)};
-    CriandoItem Machado = {ItemCriador.Dano(MACHADO), ItemCriador.Nome(MACHADO), ItemCriador.Peso(MACHADO), ItemCriador.Cura(MACHADO), ItemCriador.Defesa(POCAODECURA)};
-    CriandoItem Varinha = {ItemCriador.Dano(VARINHA), ItemCriador.Nome(VARINHA), ItemCriador.Peso(VARINHA), ItemCriador.Cura(VARINHA), ItemCriador.Defesa(POCAODECURA)};
-    CriandoItem PocaoDePoder = {ItemCriador.Dano(POCAODEPODER), ItemCriador.Nome(POCAODEPODER), ItemCriador.Peso(POCAODEPODER), ItemCriador.Cura(POCAODEPODER), ItemCriador.Defesa(POCAODECURA)};
-    CriandoItem PocaoDeDefesa = {ItemCriador.Dano(POCAODEDEFESA), ItemCriador.Nome(POCAODEDEFESA), ItemCriador.Peso(POCAODEDEFESA), ItemCriador.Cura(POCAODEDEFESA), ItemCriador.Defesa(POCAODEDEFESA)};
-    CriandoItem PocaoDaSorte = {ItemCriador.Dano(POCAODASORTE), ItemCriador.Nome(POCAODASORTE), ItemCriador.Peso(POCAODASORTE), ItemCriador.Cura(POCAODASORTE), ItemCriador.Defesa(POCAODECURA)};
+    criandoItens();
+    Cinto cinto;
+
+    int opc, slot;
+    CriandoItem itemSelecionado;
+    CriandoItem itemRetirado;
+
+    while(true){
+
+        cout << endl;
+
+        cinto.exibirCinto();
+
+        cout << endl;
+
+        cout << "Digite [1] adicionar espada, [2] adicionar pocaoDeCura, [3] retirar, [4] Replace, [5] Selecionar item: ";
+        cin >> opc;
+        cout << "Escolha o slot: ";
+        cin >> slot;
+
+
+        cout << "Item na mao: " << itemSelecionado.Nome << endl;
+        
+        switch (opc)
+        {
+        case 1:
+            cinto.Insert(slot, espada_comum);
+            break;
+        case 2:
+            cinto.Insert(slot, pocaoDeCura_comum);
+            break;
+        case 3:
+            cinto.Delete(slot, itemRetirado);
+            break;
+        case 4:
+            cinto.Replace(slot, pocaoDeDefesa_epico);
+            break;
+        case 5:
+            cinto.Retrieve(slot, itemSelecionado);
+        default:
+            break;
+        }
+
+    }
 
 
     return 0;
-
-
 };
-
-

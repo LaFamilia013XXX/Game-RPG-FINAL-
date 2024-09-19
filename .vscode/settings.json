@@ -7,6 +7,8 @@
         "unordered_map": "cpp",
         "vector": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "algorithm": "cpp",
+        "random": "cpp"
     }
 }
