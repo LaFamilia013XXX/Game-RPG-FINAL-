@@ -24,7 +24,7 @@ int main(){
     string nome_usuario = "gabriel";
     int nivel_jogo = 10;
 
-Escrever("High_Score.txt",nome_usuario,nivel_jogo);
+Escrever("High_Scores.txt",nome_usuario,nivel_jogo);
 
 return 0;
 }

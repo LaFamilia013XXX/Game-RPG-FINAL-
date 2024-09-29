@@ -379,7 +379,7 @@ void exibindo_hub(List &cinto, Mochila &mochila, CriandoItem &mao, int &vida, st
     cout << "----------x----------" << endl << endl;
 
     cout << "---------------------" << endl;
-    cout << "|     HEROI     |" << endl;
+    cout << " |     HEROI     | "   << endl;
     cout << "---------------------" << endl;
 
     cout << "Nome: "<< nome <<endl;
@@ -387,7 +387,7 @@ void exibindo_hub(List &cinto, Mochila &mochila, CriandoItem &mao, int &vida, st
     cout << "Item na mao: " << mao.Nome << endl << endl;
 
     cout << "---------------------" << endl;
-    cout << "|     CINTO     |" << endl;
+    cout << "  |     CINTO     |  "     << endl;
     cout << "---------------------" << endl;
 
     cinto.ExibirList();
@@ -395,7 +395,7 @@ void exibindo_hub(List &cinto, Mochila &mochila, CriandoItem &mao, int &vida, st
 
 
     cout << "---------------------" << endl;
-    cout << "|     MOCHILA     |" << endl;
+    cout << " |     MOCHILA     | " << endl;
     cout << "---------------------" << endl;
 
     if(!mochila.Empty()){
@@ -424,45 +424,45 @@ void inicializarArmazem_itens(List &x, int tipoBau) {
     int retorno = 1;
 
     if(tipoBau == 1){
-        x.Insert(espada_comum, 1);
+        x.Insert(espada_comum,  1);
         x.Insert(machado_comum, 2);
         x.Insert(Varinha_comum, 3);
-        x.Insert(espada_comum, 4);
+        x.Insert(espada_comum,  4);
 
         x.Insert(machado_comum, 5);
         x.Insert(Varinha_comum, 6);
-        x.Insert(espada_comum, 7);
+        x.Insert(espada_comum,  7);
         x.Insert(machado_comum, 8);
 
         // Adicionando 3 itens raros de cada tipo
-        x.Insert(espada_raro, 9);
+        x.Insert(espada_raro,   9);
         x.Insert(machado_raro, 10);
         x.Insert(Varinha_raro, 11);
 
-        x.Insert(espada_raro, 12);
+        x.Insert(espada_raro,  12);
         x.Insert(machado_raro, 13);
         x.Insert(Varinha_raro, 14);
 
         // Adicionando 2 itens lendários de cada tipo
-        x.Insert(espada_lendario, 15);
+        x.Insert(espada_lendario,  15);
         x.Insert(machado_lendario, 16);
 
         x.Insert(Varinha_lendario, 17);
-        x.Insert(espada_lendario, 18);
+        x.Insert(espada_lendario,  18);
 
         // Adicionando 1 item épico de cada tipo
-        x.Insert(espada_epico, 19);
+        x.Insert(espada_epico,  19);
         x.Insert(machado_epico, 20);
         x.Insert(Varinha_epico, 21);
 
         // Adicionando os itens restantes para completar os 30 slots
-        x.Insert(espada_comum, 22);
-        x.Insert(machado_comum, 23);
-        x.Insert(Varinha_comum, 24);
-        x.Insert(espada_raro, 25);
-        x.Insert(machado_raro, 26);
-        x.Insert(Varinha_raro, 27);
-        x.Insert(espada_lendario, 28);
+        x.Insert(espada_comum,     22);
+        x.Insert(machado_comum,    23);
+        x.Insert(Varinha_comum,    24);
+        x.Insert(espada_raro,      25);
+        x.Insert(machado_raro,     26);
+        x.Insert(Varinha_raro,     27);
+        x.Insert(espada_lendario,  28);
         x.Insert(machado_lendario, 29);
         x.Insert(Varinha_lendario, 30);
     }
@@ -983,7 +983,6 @@ void CriandoInimigos(CriandoInimigo &inimigo, int &nivel_jogo, int &sqm_batalha)
         }
     }
     
-
 }
 
 void exibindoInimigo(CriandoInimigo &inimigo){
@@ -1027,7 +1026,6 @@ void exibindoHubdeBatalha(Heroi &meuHeroi){
     meuHeroi.cintoHeroi().ExibirList();
     cout << "Peso no cinto: " << meuHeroi.cintoHeroi().PesoAtual() << endl;
     cout << "-----------------------" << endl;
-
 
 }
 
@@ -1151,7 +1149,7 @@ void acessandoCintoNaBatalha(List &cinto, CriandoItem &MaoHeroi, Mochila &mochil
                 break;
             case 3:
                 
-                // Verificando se a mochila está vazia, pois aqui o tiem da mochila sera enviado para o cinto.
+                // Verificando se a mochila está vazia, pois aqui o item da mochila sera enviado para o cinto.
 
                 // if(!mochila.Empty()){
                     
@@ -1666,7 +1664,7 @@ void exibindoAtaque(Heroi &meuHeroi){
     CriandoItem top;
 
     cout << "-----------------------" << endl;
-    cout << "|  STATUS DO HEROI  |" << endl;
+    cout << " |  STATUS DO HEROI  |" << endl;
     cout << "-----------------------" << endl;
     cout << "Vida: " << meuHeroi.vidaHeroi() << endl;
     cout << "Mao: " << meuHeroi.maoHeroi().Nome << endl;
@@ -1956,19 +1954,3 @@ void TratarErro() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-void suaFuncao(int &opc){
-    while (true)
-    {
-        cin >> opc;
-        if(cin.fail()){
-            cout << "Por favor digite  um valor valido"<< endl;
-            TratarErro();
-            continue;
-        }
-        if (opc <1 && opc > 2){
-            cout<< "Por favor escolha um numero entre 1 e 2 para prosseguir"<< endl;
-
-        }else{break;}
-
-    }
-}
