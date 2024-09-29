@@ -36,7 +36,7 @@ Item::Item(){
 
 void Item::IniciandoItem() {
 
-    itens[POCAODECURA_COMUM] = {0, "Pocao Cura - Comum", 10, 50, 0}; 
+    itens[POCAODECURA_COMUM] = {0, "Pocao Cura - Comum", 10, 50, 0};  // dano, peso, cura e defesa
     itens[POCAODECURA_RARO] = {0, "Pocao Cura - Raro", 20, 75, 0}; 
     itens[POCAODECURA_LENDARIO] = {0, "Pocao Cura - Lendario", 30, 100, 0};
     itens[POCAODECURA_EPICO] = {0, "Pocao Cura - Epico", 40, 150, 0};
@@ -46,15 +46,15 @@ void Item::IniciandoItem() {
     itens[ESPADA_LENDARIO] = {25, "Espada - Lendario", 30, 0, 0};
     itens[ESPADA_EPICO] = {30, "Espada - Epico", 40, 0, 0};
 
-    itens[MACHADO_COMUM] = {10, "Machado - Comum", 10, 0, 0}; 
-    itens[MACHADO_RARO] = {15, "Machado - Raro", 20, 0, 0}; 
+    itens[MACHADO_COMUM] =    {10, "Machado - Comum", 10, 0, 0}; 
+    itens[MACHADO_RARO] =     {15, "Machado - Raro", 20, 0, 0}; 
     itens[MACHADO_LENDARIO] = {20, "Machado - Lendario", 30, 0, 0};
-    itens[MACHADO_EPICO] = {25, "Machado - Epico", 40, 0, 0};
+    itens[MACHADO_EPICO] =    {25, "Machado - Epico", 40, 0, 0};
 
-    itens[VARINHA_COMUM] = {10, "Varinha - Comum", 10, 0, 0}; 
-    itens[VARINHA_RARO] = {15, "Varinha - Raro", 20, 0, 0}; 
+    itens[VARINHA_COMUM] =    {10, "Varinha - Comum", 10, 0, 0}; 
+    itens[VARINHA_RARO] =     {15, "Varinha - Raro", 20, 0, 0}; 
     itens[VARINHA_LENDARIO] = {20, "Varinha - Lendario", 30, 0, 0};
-    itens[VARINHA_EPICO] = {25, "Varinha - Epico", 40, 0, 0};
+    itens[VARINHA_EPICO] =    {25, "Varinha - Epico", 40, 0, 0};
 
     itens[VAZIO] = {0, "vazio", 0, 0, 0};
 };
