@@ -8,7 +8,7 @@ O que falta fazer?
 
 - Implementar todo o tramamento de input (cin>> opc) - (Gabriel);
 - Documentar as funcoes principais do codigo;
-- Ajustar ponto da historia ( matheus )
+- Ajustar ponto da historia ( matheuss )
 
  */
 
