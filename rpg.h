@@ -1,48 +1,10 @@
 // armas e pocoes
 // vida, ataque, defesa, 
+// #ifndef RPG_H
+// #define RPG_H
+
 #include <string>
 using namespace std;
-
-// Criando os inimigos do RPG;
-enum TipoInimigo {
-    TIPO1,
-    TIPO2,
-    TIPO3,
-    TIPO4,
-    TIPO5,
-    TIPO6,
-    TIPO7,
-    TIPO8,
-    TIPO9,
-    TIPO10,
-    BOSS1,
-    BOSS2,
-    BOSS3,
-    BOSS4,
-    BOSS5,
-    NUM_TIPOS_DE_INIMIGOS
-};
-
-struct CriandoInimigo {
-    int dano;
-    int barraVida;
-};
-
-class Inimigo_generico {
-    public:
-        Inimigo_generico();
-        int dano(TipoInimigo tipoInimigo) const;
-        int barraVida(TipoInimigo tipoInimigo) const;
-    
-    private:
-        CriandoInimigo inimigos[NUM_TIPOS_DE_INIMIGOS];
-        void iniciandoInimigo();
-};
-
-
-
-
-
 
 // Criando os Itens do RPG, cada nome de item e sua raridade terá valores diferentes;
 enum Tipo {
@@ -80,6 +42,7 @@ enum Tipo {
     VARINHA_RARO, //do mago
     VARINHA_LENDARIO, //do mago
     VARINHA_EPICO, //do mago
+    VAZIO, // Inicializando item vazio
 
     NUM_TIPOS_DE_ITENS
 };
@@ -122,59 +85,68 @@ extern CriandoItem Varinha_comum;
 extern CriandoItem Varinha_raro;
 extern CriandoItem Varinha_lendario;
 extern CriandoItem Varinha_epico;
-extern CriandoItem pocaoSorte_comum;
-extern CriandoItem pocaoSorte_raro;
-extern CriandoItem pocaoSorte_lendario;
-extern CriandoItem pocaoSorte_epico;
 extern CriandoItem pocaoDeCura_comum;
 extern CriandoItem pocaoDeCura_raro;
 extern CriandoItem pocaoDeCura_lendario;
 extern CriandoItem pocaoDeCura_epico;
-extern CriandoItem pocaoDeDefesa_comum;
-extern CriandoItem pocaoDeDefesa_raro;
-extern CriandoItem pocaoDeDefesa_lendario;
-extern CriandoItem pocaoDeDefesa_epico;
-extern CriandoItem pocaoDePoder_comum;
-extern CriandoItem pocaoDePoder_raro;
-extern CriandoItem pocaoDePoder_lendario;
-extern CriandoItem pocaoDePoder_epico;
+extern CriandoItem vazio;
 
 // Essa será a função responsável para atribuir os valores de cada variável e item criadas aqui no .h, o qual serão chamados no driver.cpp;
 void criandoItens();
 
+// Criando os inimigos do RPG;
+enum TipoInimigo {
+    TIPO1,
+    TIPO2,
+    TIPO3,
+    TIPO4,
+    TIPO5,
+    TIPO6,
+    TIPO7,
+    TIPO8,
+    TIPO9,
+    TIPO10,
+    TIPO11,
+    TIPO12,
+    TIPO13,
+    TIPO14,
+    TIPO15,
+    TIPO16,
+    TIPO17,
+    TIPO18,
+    TIPO19,
+    TIPO20,
+    BOSS1,
+    BOSS2,
+    BOSS3,
+    BOSS4,
+    BOSS5,
+    NUM_TIPOS_DE_INIMIGOS
+};
 
+struct CriandoInimigo {
+    string nome;
+    int dano;
+    int barraVida;
+    int sqm_level;
+    int lvl;
+};
 
+class Inimigo_generico {
+    public:
+        Inimigo_generico();
 
+        int dano(TipoInimigo tipoInimigo) const;
+        int barraVida(TipoInimigo tipoInimigo) const;
+        string nome(TipoInimigo tipoInimigo) const;
+        int sqm_lvl(TipoInimigo tipoInimigo) const;
+        int lvl_inimigo(TipoInimigo tipoInimigo) const;
 
-
-
-
-
-
-
-// Estruturas de organização
-
-// const int MaxList = 100;
-// class List {
-//     public:
-//         List();
-//         ~List();
-//         bool Empty();
-//         bool Full();
-//         void Insert(int p, int x);
-//         void Delete(int p, int &x);
-//         void Retrieve(int p, int &x);
-//         void Replace(int p, int x);
-//         void Clear();
-//         int Size();
-//         void exibirList();
-//     private:
-//         int count;
-//         int Entry[MaxList+1]; 
-
-// };
-
-
+        void sofrendoDano(CriandoInimigo &inimigo, CriandoItem &item);
+    private:
+        CriandoInimigo inimigos[NUM_TIPOS_DE_INIMIGOS];
+        void iniciandoInimigo();
+};
 
 // Mochila Usuario
 class Mochila {
@@ -183,15 +155,16 @@ class Mochila {
         ~Mochila();
         bool Empty();
         bool Full();
-        void Push(int x);
-        void Pop(int &x);
+        void Push(CriandoItem x);
+        void Pop(CriandoItem &x);
         void Clear();
-        void Top(int &x);
+        void Top(CriandoItem &x);
         int Size();
+        void exibirMochila();
     private:
 
         struct StackNode {
-            int Entry;
+            CriandoItem Entry;
             StackNode *NextNode;
         };
 
@@ -200,122 +173,74 @@ class Mochila {
         StackPointer top;
 };
 
-// const int MaxStack = 4;
-// const int PesoMax = 100;
-// class Cinto {
-//     public:
-//         Cinto();
-//         ~Cinto();
-//         bool Empty();
-//         bool Full();
-//         bool PesoMaximo();
-//         void Push(CriandoItem x);
-//         void Pop(CriandoItem &x);
-//         void Clear();
-//         void Top(CriandoItem &x);
-//         int Size();
-//         void exibirCinto();
-//     private:
-//         int top;
-//         int peso = 0;
-//         CriandoItem Entry[MaxStack]; // Armazena itens de `CriandoItem`
-// };
-
-const int MaxList = 4;
-class Cinto {
+class List{
     public:
-        Cinto();
-        ~Cinto();
+        List(int maxList, int maxPeso);
+        ~List();
         bool Empty();
-        bool Full();
-        bool PesoMaximo();
-        void Insert(int p, CriandoItem x);
-        void Delete(int p, CriandoItem &x);
-        void Retrieve(int p, CriandoItem &x);
-        void Replace(int p, CriandoItem x);
-        void Clear();
+        bool full();
+        bool fullPeso();
+        void Insert (CriandoItem x, int p);
+        void Delete(CriandoItem &x, int p);
         int Size();
-        void exibirCinto();
-    private:
-        int count;
-        CriandoItem Entry[MaxList+1]; 
-};
-
-const int MaxList = 70;
-class ListaItens {
-    public:
-        ListaItens();
-        ~ListaItens();
-        bool Empty();
-        bool Full();
-        bool PesoMaximo();
-        void Insert(int p, CriandoItem x);
-        void Delete(int p, CriandoItem &x);
-        void Retrieve(int p, CriandoItem &x);
-        void Replace(int p, CriandoItem x);
         void Clear();
-        int Size();
-        void exibirListaItens();
+        void Retrieve(CriandoItem &x, int p);
+        void Replace(CriandoItem x, int p, int &statusPeso);
+        void ExibirList();
+        int PesoAtual();
     private:
+        struct ListNode{
+            CriandoItem Entry;
+            ListNode *NextNode;
+        };
+
+        typedef ListNode*  ListPointer;
+        ListPointer head;
         int count;
-        CriandoItem Entry[MaxList+1]; 
+        int Max;
+        int PesoMax;
+        int Peso = 0;
+        void SetPosition(int p, ListPointer &current);
+
 };
 
-
-/*-------------------------------------------------------------------------------------------------------*/
-class Heroi
-{
-    public:
-    Heroi(const string name,int hp, int ataque,
-    int defesa, 
-    int agilidade, 
-    int luck, 
-    string especial);
-void MostrandoTudo();
-
-    ~Heroi(); //destrutor
+class Heroi {
     private:
-        const string Name;
-        int HP;
-        int Ataque;
-        int Defesa;
-        int Agilidade; 
-        int Luck;
-        string Especial;
-};
-/*-------------------------------------------------------------------------------------------------------*/
-
-class Itens{
-public: 
-enum class Tipo 
-{
-    PocaodeCura, // Cura o Heroi
-    PocaodoPoder, // da um UPP em tudo (HP, Ataque, Defesa, Agilidade e Luck)
-    PocaodeDefesa, // aumenta tmeporariamente a defesa (escudo do heroi)
-    PocaodaSorte, // aumenta a sorte de dar crítico e/ou esquivar de um inimigo
-    Espada, // para o Barbaro
-    Machado, // para o Barbaro
-    Varinha //do mago
+        int vida;
+        CriandoItem Mao;
+        Mochila mochila;
+        List cinto;
+        string Nome;
+    public:
+        Heroi(int vidaInicial, string nome, int maxCinto, int pesoMaxCinto);
+        int& vidaHeroi();
+        Mochila& mochilaHeroi();
+        List& cintoHeroi();
+        CriandoItem& maoHeroi();
+        string& exibindoNome();
+        void curandoHeroi(CriandoItem &x);
+        void dandoDanoNoHeroi(CriandoInimigo &x);
 };
 
-enum class Raridade
-{
-    Comum,
-    Raro,
-    Epico,
-    Lendario
-};
-
-Itens(Tipo tipo, int Nivel, Raridade raridade); 
-~Itens();
-
-private:
-Tipo tipo;
-int Nivel; // irao do 1 ao 5
-Raridade raridade;
-};
-/*-------------------------------------------------------------------------------------------------------*/
 
 
 
-/*-------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

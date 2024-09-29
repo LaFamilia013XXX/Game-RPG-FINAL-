@@ -6,39 +6,9 @@ using namespace std;
 #define RPG_H
 
 
-// Funções inimigos, declaração de valores e estruturas.
-
-Inimigo_generico::Inimigo_generico(){
-    iniciandoInimigo();
-}
-
-void Inimigo_generico::iniciandoInimigo() {
-    // Inimigos Simples do Mapa;
-    inimigos[TIPO1] = {10, 100};
-    inimigos[TIPO2] = {13, 130};
-    inimigos[TIPO3] = {16, 160};
-    inimigos[TIPO4] = {19, 190};
-    inimigos[TIPO5] = {22, 220};
-    inimigos[TIPO6] = {25, 250};
-    inimigos[TIPO7] = {28, 280};
-    inimigos[TIPO8] = {31, 310};
-    inimigos[TIPO9] = {34, 340};
-    inimigos[TIPO10] = {37, 370};
-}
-
-int Inimigo_generico::dano(TipoInimigo tipoInimigo) const {
-    return inimigos[tipoInimigo].dano;
-}
-
-int Inimigo_generico::barraVida(TipoInimigo tipoInimigo) const {
-    return inimigos[tipoInimigo].barraVida;
-}
-
 // Classes de itens e seu atributos;
 
 // Declarando as Structs para cada tipo de item (Coloquei tudo dentro de uma função void);
-
-
 
 CriandoItem espada_comum;
 CriandoItem espada_raro;
@@ -52,22 +22,11 @@ CriandoItem Varinha_comum;
 CriandoItem Varinha_raro;
 CriandoItem Varinha_lendario;
 CriandoItem Varinha_epico;
-CriandoItem pocaoSorte_comum;
-CriandoItem pocaoSorte_raro;
-CriandoItem pocaoSorte_lendario;
-CriandoItem pocaoSorte_epico;
 CriandoItem pocaoDeCura_comum;
 CriandoItem pocaoDeCura_raro;
 CriandoItem pocaoDeCura_lendario;
 CriandoItem pocaoDeCura_epico;
-CriandoItem pocaoDeDefesa_comum;
-CriandoItem pocaoDeDefesa_raro;
-CriandoItem pocaoDeDefesa_lendario;
-CriandoItem pocaoDeDefesa_epico;
-CriandoItem pocaoDePoder_comum;
-CriandoItem pocaoDePoder_raro;
-CriandoItem pocaoDePoder_lendario;
-CriandoItem pocaoDePoder_epico;
+CriandoItem vazio;
 
 // Chamando a função void:
 
@@ -77,40 +36,27 @@ Item::Item(){
 
 void Item::IniciandoItem() {
 
-    itens[POCAODASORTE_COMUM] = {10, "Porcao Sorte - Comum", 10, 10, 0};
-    itens[POCAODASORTE_RARO] = {10, "Porcao Sorte - Raro", 10, 10, 0};
-    itens[POCAODASORTE_LENDARIO] = {10, "Porcao Sorte - Lendario", 10, 10, 0};
-    itens[POCAODASORTE_EPICO] = {10, "Porcao Sorte - Epico", 10, 10, 0};
+    itens[POCAODECURA_COMUM] = {0, "Pocao Cura - Comum", 10, 50, 0}; 
+    itens[POCAODECURA_RARO] = {0, "Pocao Cura - Raro", 20, 75, 0}; 
+    itens[POCAODECURA_LENDARIO] = {0, "Pocao Cura - Lendario", 30, 100, 0};
+    itens[POCAODECURA_EPICO] = {0, "Pocao Cura - Epico", 40, 150, 0};
 
-    itens[POCAODECURA_COMUM] = {0, "Pocao Cura - Comum", 15, 30, 0};
-    itens[POCAODECURA_RARO] = {0, "Pocao Cura - Raro", 17, 35, 0};
-    itens[POCAODECURA_LENDARIO] = {0, "Pocao Cura - Lendario", 17, 40, 0};
-    itens[POCAODECURA_EPICO] = {0, "Pocao Cura - Epico", 20, 60, 0};
+    itens[ESPADA_COMUM] = {15, "Espada - Comum", 10, 0, 0}; 
+    itens[ESPADA_RARO] = {20, "Espada - Raro", 20, 0, 0}; 
+    itens[ESPADA_LENDARIO] = {25, "Espada - Lendario", 30, 0, 0};
+    itens[ESPADA_EPICO] = {30, "Espada - Epico", 40, 0, 0};
 
-    itens[POCAODEDEFESA_COMUM] = {0, "Pocao defesa - Comum", 20, 0, 30};
-    itens[POCAODEDEFESA_RARO] = {0, "Pocao defesa - Raro", 20, 0, 30};
-    itens[POCAODEDEFESA_LENDARIO] = {0, "Pocao defesa - Lendario", 20, 0, 30};
-    itens[POCAODEDEFESA_EPICO] = {0, "Pocao defesa - Epico", 20, 0, 30};
+    itens[MACHADO_COMUM] = {10, "Machado - Comum", 10, 0, 0}; 
+    itens[MACHADO_RARO] = {15, "Machado - Raro", 20, 0, 0}; 
+    itens[MACHADO_LENDARIO] = {20, "Machado - Lendario", 30, 0, 0};
+    itens[MACHADO_EPICO] = {25, "Machado - Epico", 40, 0, 0};
 
-    itens[POCAODEPODER_COMUM] = {10, "Pocao Poder - Comum", 30, 10, 10};
-    itens[POCAODEPODER_RARO] = {10, "Pocao Poder - Raro", 30, 10, 10};
-    itens[POCAODEPODER_LENDARIO] = {10, "Pocao Poder - Lendario", 30, 10, 10};
-    itens[POCAODEPODER_EPICO] = {10, "Pocao Poder - Epico", 30, 10, 10};
+    itens[VARINHA_COMUM] = {10, "Varinha - Comum", 10, 0, 0}; 
+    itens[VARINHA_RARO] = {15, "Varinha - Raro", 20, 0, 0}; 
+    itens[VARINHA_LENDARIO] = {20, "Varinha - Lendario", 30, 0, 0};
+    itens[VARINHA_EPICO] = {25, "Varinha - Epico", 40, 0, 0};
 
-    itens[ESPADA_COMUM] = {25, "Espada - Comum", 25, 0, 0};
-    itens[ESPADA_RARO] = {25, "Espada - Raro", 25, 0, 0};
-    itens[ESPADA_LENDARIO] = {25, "Espada - Lendario", 25, 0, 0};
-    itens[ESPADA_EPICO] = {25, "Espada - Epico", 25, 0, 0};
-
-    itens[MACHADO_COMUM] = {20, "Machado - Comum", 20, 0, 0};
-    itens[MACHADO_RARO] = {20, "Machado - Raro", 20, 0, 0};
-    itens[MACHADO_LENDARIO] = {20, "Machado - Lendario", 20, 0, 0};
-    itens[MACHADO_EPICO] = {20, "Machado - Epico", 20, 0, 0};
-
-    itens[VARINHA_COMUM] = {20, "Varinha - Comum", 20, 0, 0};
-    itens[VARINHA_RARO] = {20, "Varinha - Raro", 20, 0, 0};
-    itens[VARINHA_LENDARIO] = {20, "Varinha - Lendario", 20, 0, 0};
-    itens[VARINHA_EPICO] = {20, "Varinha - Epico", 20, 0, 0};
+    itens[VAZIO] = {0, "vazio", 0, 0, 0};
 };
 
 int Item::Dano(Tipo tipo) const {
@@ -154,206 +100,191 @@ void criandoItens(){
     Varinha_lendario = {ItemCriador.Dano(VARINHA_LENDARIO), ItemCriador.Nome(VARINHA_LENDARIO), ItemCriador.Peso(VARINHA_LENDARIO), ItemCriador.Cura(VARINHA_LENDARIO), ItemCriador.Defesa(VARINHA_LENDARIO)};
     Varinha_epico = {ItemCriador.Dano(VARINHA_EPICO), ItemCriador.Nome(VARINHA_EPICO), ItemCriador.Peso(VARINHA_EPICO), ItemCriador.Cura(VARINHA_EPICO), ItemCriador.Defesa(VARINHA_EPICO)};
    
-    pocaoSorte_comum = {ItemCriador.Dano(POCAODASORTE_COMUM), ItemCriador.Nome(POCAODASORTE_COMUM), ItemCriador.Peso(POCAODASORTE_COMUM), ItemCriador.Cura(POCAODASORTE_COMUM), ItemCriador.Defesa(POCAODASORTE_COMUM)};
-    pocaoSorte_raro = {ItemCriador.Dano(POCAODASORTE_RARO), ItemCriador.Nome(POCAODASORTE_RARO), ItemCriador.Peso(POCAODASORTE_RARO), ItemCriador.Cura(POCAODASORTE_RARO), ItemCriador.Defesa(POCAODASORTE_RARO)};
-    pocaoSorte_lendario = {ItemCriador.Dano(POCAODASORTE_LENDARIO), ItemCriador.Nome(POCAODASORTE_LENDARIO), ItemCriador.Peso(POCAODASORTE_LENDARIO), ItemCriador.Cura(POCAODASORTE_LENDARIO), ItemCriador.Defesa(POCAODASORTE_LENDARIO)};
-    pocaoSorte_epico = {ItemCriador.Dano(POCAODASORTE_EPICO), ItemCriador.Nome(POCAODASORTE_EPICO), ItemCriador.Peso(POCAODASORTE_EPICO), ItemCriador.Cura(POCAODASORTE_EPICO), ItemCriador.Defesa(POCAODASORTE_EPICO)};
-    
-    pocaoDeDefesa_comum = {ItemCriador.Dano(POCAODEDEFESA_COMUM), ItemCriador.Nome(POCAODEDEFESA_COMUM), ItemCriador.Peso(POCAODEDEFESA_COMUM), ItemCriador.Cura(POCAODEDEFESA_COMUM), ItemCriador.Defesa(POCAODEDEFESA_COMUM)};
-    pocaoDeDefesa_raro = {ItemCriador.Dano(POCAODEDEFESA_RARO), ItemCriador.Nome(POCAODEDEFESA_RARO), ItemCriador.Peso(POCAODEDEFESA_RARO), ItemCriador.Cura(POCAODEDEFESA_RARO), ItemCriador.Defesa(POCAODEDEFESA_RARO)};
-    pocaoDeDefesa_lendario = {ItemCriador.Dano(POCAODEDEFESA_LENDARIO), ItemCriador.Nome(POCAODEDEFESA_LENDARIO), ItemCriador.Peso(POCAODEDEFESA_LENDARIO), ItemCriador.Cura(POCAODEDEFESA_LENDARIO), ItemCriador.Defesa(POCAODEDEFESA_LENDARIO)};
-    pocaoDeDefesa_epico = {ItemCriador.Dano(POCAODEDEFESA_EPICO), ItemCriador.Nome(POCAODEDEFESA_EPICO), ItemCriador.Peso(POCAODEDEFESA_EPICO), ItemCriador.Cura(POCAODEDEFESA_EPICO), ItemCriador.Defesa(POCAODEDEFESA_EPICO)};
-    
     pocaoDeCura_comum = {ItemCriador.Dano(POCAODECURA_COMUM), ItemCriador.Nome(POCAODECURA_COMUM), ItemCriador.Peso(POCAODECURA_COMUM), ItemCriador.Cura(POCAODECURA_COMUM), ItemCriador.Defesa(POCAODECURA_COMUM)};
     pocaoDeCura_raro = {ItemCriador.Dano(POCAODECURA_RARO), ItemCriador.Nome(POCAODECURA_RARO), ItemCriador.Peso(POCAODECURA_RARO), ItemCriador.Cura(POCAODECURA_RARO), ItemCriador.Defesa(POCAODECURA_RARO)};
     pocaoDeCura_lendario = {ItemCriador.Dano(POCAODECURA_LENDARIO), ItemCriador.Nome(POCAODECURA_LENDARIO), ItemCriador.Peso(POCAODECURA_LENDARIO), ItemCriador.Cura(POCAODECURA_LENDARIO), ItemCriador.Defesa(POCAODECURA_LENDARIO)};
     pocaoDeCura_epico = {ItemCriador.Dano(POCAODECURA_EPICO), ItemCriador.Nome(POCAODECURA_EPICO), ItemCriador.Peso(POCAODECURA_EPICO), ItemCriador.Cura(POCAODECURA_EPICO), ItemCriador.Defesa(POCAODECURA_EPICO)};
+
+    vazio = {ItemCriador.Dano(VAZIO), ItemCriador.Nome(VAZIO), ItemCriador.Peso(VAZIO), ItemCriador.Cura(VAZIO), ItemCriador.Defesa(VAZIO)};
+
 }
 
 
-
-
-
-
-// Lista Estatica:
-
-Cinto::Cinto(){
+List::List(int maxList, int maxPeso)
+{
     count = 0;
+    head = NULL;
+    Max = maxList;
+    PesoMax = maxPeso;
 }
 
-Cinto::~Cinto(){
-    cout << "Cinto destruida";
+List::~List(){
+    ListPointer q;
+
+    while(head!=NULL){
+        q = head;
+        head = head ->NextNode;
+        delete q;
 }
 
-bool Cinto::Empty(){
-    return (count == 0);
 }
 
-bool Cinto::Full(){
-    return (count == MaxList);
+bool List::Empty(){
+    return count == 0;
 }
 
-void Cinto::Insert(int p, CriandoItem x){ 
-    int i;
-    if (Full()){ 
-        cout << "Cinto Cheia";
+bool List::full(){
+    return (count == Max);
+}
+
+bool List::fullPeso(){
+    return ( Peso > PesoMax );
+}
+
+void List::Insert(CriandoItem x, int p){
+    if(p < 1 || p > count+1){
+        cout << "Posicao invalida"<<endl;
         return;
     }
-    if (p < 1 || p > count+1){ 
-        cout << "Posicao invalida";
+
+    if(full()){
+        cout << "O cinto esta cheio!" << endl;
         return;
     }
-    for(i=count; i>=p; i--){
-        Entry[i+1] = Entry[i];
+
+    Peso = Peso + x.Peso;
+
+    if(fullPeso()){
+        cout << "O cinto ira ficar pesado demais!"<<endl;
+        Peso = Peso - x.Peso;
+        return;
     }
-    Entry[p] = x;
-    count++;
+
+    ListNode *newNode;
+    newNode = new ListNode;
+    if (newNode == NULL){
+        cout << "sem espaco para o novo elemento"<<endl;
+        return;
+    }
+
+    newNode -> Entry = x;
+    if (p == 1){
+        newNode-> NextNode = head;
+        head = newNode;
+
+    }else{
+        ListNode  *q;
+        SetPosition(p - 1, q);
+        newNode -> NextNode = q -> NextNode;
+        q -> NextNode = newNode;
+    }
+
+    count ++;
 }
 
-void Cinto::Delete(int p, CriandoItem &x){ 
-    int i;
-    if (Empty()){ 
-        cout << "Cinto esta Vazia";
-        return;
-    }   
-    if (p < 1 || p > count){ 
-        cout << "Posicao invalida";
+void List::Delete(CriandoItem &x, int p){
+
+    if (p < 1 || p > count ){
+
+        cout<<"posicao invalida"<< endl;
         return;
     }
-    x = Entry[p];
-    for(i=p; i<count; i++){
-        Entry[i] = Entry[i+1];
-    }
-    count = count - 1;
+    ListNode *Node;
+    if (p == 1){
+        Node = head;
+        head = head-> NextNode;
         
-}
-
-void Cinto::Clear(){
-    count = 0;
-}
-
-int Cinto::Size(){
-    return count;
-}
-
-void Cinto::Retrieve(int p, CriandoItem&x){ 
-    if(p < 1 || p > count){ 
-        cout << "Posicao invalida";
-        return;
-    }
-    x = Entry[p];
-
-    cout << x.Nome << endl;
-}
-
-void Cinto::Replace(int p, CriandoItem x){ 
-    if(p < 1 || p > count){ 
-        cout << "Posicao invalida";
-        return;
-    }
-    Entry[p] = x;
-}
-
-void Cinto::exibirCinto(){
-    for(int i=0; i<count; i++){
-        cout << "Posicao " << i << " " << Entry[i+1].Nome << endl;
-    } cout << endl;
-}
-
-
-
-ListaItens::ListaItens(){
-    count = 0;
-}
-
-ListaItens::~ListaItens(){
-    cout << "Cinto destruida";
-}
-
-bool ListaItens::Empty(){
-    return (count == 0);
-}
-
-bool ListaItens::Full(){
-    return (count == MaxList);
-}
-
-void ListaItens::Insert(int p, CriandoItem x){ 
-    int i;
-    if (Full()){ 
-        cout << "ListaItens Cheia";
-        return;
-    }
-    if (p < 1 || p > count+1){ 
-        cout << "Posicao invalida";
-        return;
-    }
-    for(i=count; i>=p; i--){
-        Entry[i+1] = Entry[i];
-    }
-    Entry[p] = x;
-    count++;
-}
-
-void ListaItens::Delete(int p, CriandoItem &x){ 
-    int i;
-    if (Empty()){ 
-        cout << "ListaItens esta Vazia";
-        return;
-    }   
-    if (p < 1 || p > count){ 
-        cout << "Posicao invalida";
-        return;
-    }
-    x = Entry[p];
-    for(i=p; i<count; i++){
-        Entry[i] = Entry[i+1];
-    }
-    count = count - 1;
+    }else{
+        ListNode *q;
+        SetPosition(p-1, q);
+        Node = q -> NextNode;
         
+        q -> NextNode = Node -> NextNode;  
+
+    }
+    x = Node -> Entry;
+    delete Node;
+    count -- ;
 }
 
-void ListaItens::Clear(){
+void List::SetPosition(int p, ListPointer &current){
+    current = head;
+    for(int i = 2; i <= p; i++){
+        current = current -> NextNode;
+
+    }
+}
+
+void List::Clear(){
+    ListNode *q;
+    while(head != NULL ){
+        q = head;
+        head = head -> NextNode;
+        delete q;
+    }
     count = 0;
 }
 
-int ListaItens::Size(){
-    return count;
-}
-
-void ListaItens::Retrieve(int p, CriandoItem&x){ 
-    if(p < 1 || p > count){ 
-        cout << "Posicao invalida";
+void List::Replace(CriandoItem x, int p, int &statusPeso){
+    if (p < 1 || p > count){
+        cout<<"posicao invalida"<< endl;
         return;
     }
-    x = Entry[p];
 
-    cout << x.Nome << endl;
+    ListNode *Node;
+    int opc;
+
+    SetPosition(p, Node);
+
+    Peso = Peso - Node->Entry.Peso;
+    Peso = Peso + x.Peso;
+
+    if(fullPeso()){
+        Peso = Peso - x.Peso;
+        Peso = Peso + Node->Entry.Peso;
+        statusPeso = 0;
+        return;
+    }else{
+        statusPeso = 1;
+        Node-> Entry = x;
+    }
+
+
 }
 
-void ListaItens::Replace(int p, CriandoItem x){ 
-    if(p < 1 || p > count){ 
-        cout << "Posicao invalida";
+void List::Retrieve(CriandoItem &x, int p){
+    if (p < 1 || p > count){
+        cout<< "posicao invalida"<< endl;
         return;
     }
-    Entry[p] = x;
+
+    ListNode *Node;
+    SetPosition(p, Node);
+    x = Node -> Entry;
 }
 
-void ListaItens::exibirListaItens(){
-    for(int i=0; i<count; i++){
-        cout << "Posicao " << i << " " << Entry[i+1].Nome << endl;
-    } cout << endl;
+void List::ExibirList(){
+    ListNode *q = head;
+    for(int i = 0; i < Max; i++){
+        if( i < count){
+            cout << i + 1 << " - " << q->Entry.Nome << endl;
+            q = q -> NextNode;
+        }else{
+            cout << i + 1 << " - " << "vazio"<<endl;
+        }
+        
+    }
+
+
 }
 
+int List::Size(){
+    return Max;
+}
 
-
-
-
-
-
-
-
-
+int List::PesoAtual(){
+    return Peso;
+}
 
 // Stack Mochila
 
@@ -362,7 +293,7 @@ Mochila::Mochila(){
 }
 
 Mochila::~Mochila(){
-    int x;
+    CriandoItem x;
     while(!Empty()){
         Pop(x);
     }
@@ -376,7 +307,7 @@ bool Mochila::Full(){
     return false;
 }
 
-void Mochila::Push(int x){
+void Mochila::Push(CriandoItem x){
     StackPointer p;
 
     p = new StackNode;
@@ -391,7 +322,7 @@ void Mochila::Push(int x){
     top = p;
 }
 
-void Mochila::Pop(int &x) { 
+void Mochila::Pop(CriandoItem &x) { 
     StackPointer p;
 
     if (Empty())
@@ -407,19 +338,10 @@ void Mochila::Pop(int &x) {
 
 void Mochila::Clear(){ 
 
-    int x;
+    CriandoItem x;
     while(! Empty()){
          Pop(x);
     }
-}
-
-void Mochila::Top(int &x){ 
-    if(Empty()){ 
-        cout << "Pilha vazia";
-        abort();
-    }
-    Pop(x);
-    Push(x);
 }
 
 int Mochila::Size(){
@@ -436,36 +358,120 @@ int Mochila::Size(){
 
 }
 
+void Mochila::Top(CriandoItem &x){ 
+    if(Empty()){ 
+        cout << "Pilha vazia";
+    }
+
+    Pop(x);
+    Push(x);
+}
 
 
+Heroi::Heroi(int vidaInicial, string nome, int capacidadeCinto, int pesoMaxCinto) : vida(vidaInicial), Nome(nome), mochila(), cinto(capacidadeCinto, pesoMaxCinto)
+{}
 
+int& Heroi::vidaHeroi(){
+    return vida;
+}
 
-void Heroi::MostrandoTudo(){
+Mochila& Heroi::mochilaHeroi(){
+    return mochila;
+}
 
-cout<< "Name" << Name <<endl;
-cout << " HP " << HP<<endl;
-cout << "Ataque" << Ataque <<endl;
-cout << "Defesa" << Defesa <<endl;
-cout << "Agilidade" << Agilidade <<endl;
-cout << "Luck" << Luck <<endl;
-cout << "Especial" << Especial <<endl;
+List& Heroi::cintoHeroi(){
+    return cinto;
+}
 
-};
+CriandoItem& Heroi::maoHeroi(){
+    return Mao;
+}
 
-Heroi::Heroi (const string name, int hp, int ataque, int defesa, int agilidade, int luck, string especial):
-Name (name), HP(hp), Ataque (ataque), Defesa (defesa), Agilidade (agilidade), Luck (luck), Especial (especial)
-{
-if (HP<0){ // fazendo verificacao da vida
-    HP = 0;
-};
+string& Heroi::exibindoNome(){
+    return Nome;
+}
 
-if (HP>200) // verificacao da vida
-{
-    HP = 200;
-};
+void Heroi::curandoHeroi(CriandoItem &x){
+    vida = vida + x.Cura;
+    if(vida > 100){
+        vida = 100;
+    }
+}
 
-};
+void Heroi::dandoDanoNoHeroi(CriandoInimigo &x){
+    vida = vida - x.dano;
+    if(vida < 0){
+        vida = 0;
+    }
+}
 
+// Funções inimigos, declaração de valores e estruturas.
+
+Inimigo_generico::Inimigo_generico(){
+    iniciandoInimigo();
+}
+
+void Inimigo_generico::iniciandoInimigo() {
+    // Inimigos Simples do Mapa;
+    inimigos[TIPO1] = {"Fenix - Lendaria", 5, 1, 1, 1}; // Vida definida como 1
+    inimigos[TIPO2] = {"Soldado - Desolado", 3, 1, 1, 1}; // Vida definida como 1
+    inimigos[TIPO3] = {"Mago - Renegado", 4, 1, 1, 1}; // Vida definida como 1
+    inimigos[TIPO4] = {"Alma do soldado - Traido", 4, 1, 1, 1}; // Vida definida como 1
+
+    inimigos[TIPO5] = {"Piratas - Amaldicoados", 6, 1, 2, 1}; // Vida definida como 1
+    inimigos[TIPO6] = {"Soldados - Elite", 7, 1, 2, 1}; // Vida definida como 1
+    inimigos[TIPO7] = {"Polvo de mil tentaculos", 9, 1, 2, 1}; // Vida definida como 1
+    inimigos[TIPO8] = {"Espioes - sabotadores", 9, 1, 2, 1}; // Vida definida como 1
+
+    inimigos[TIPO9] = {"Ermesz - Guardiao", 12, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO10] = {"Alithko - Devorador de pesadelos", 13, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO11] = {"Xerxes - O reflexo", 15, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO12] = {"Ezreal - O mago", 15, 1, 4, 1}; // Vida definida como 1
+
+    inimigos[TIPO13] = {"Rei do mortos", 12, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO14] = {"Ezio - Devorador de almas", 13, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO15] = {"Dracula - O Rei", 15, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO16] = {"Orgne - O pesadelo", 15, 1, 4, 1}; // Vida definida como 1
+
+    inimigos[TIPO17] = {"Golem - O Desolado", 12, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO18] = {"Andariel - Devorador de memorias", 13, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO19] = {"Astaroth - Manipulador", 15, 1, 4, 1}; // Vida definida como 1
+    inimigos[TIPO20] = {"Gabriel - O Anjo Caido", 15, 1, 4, 1}; // Vida definida como 1
+
+    inimigos[BOSS1] = {" Arcanjo - Sargento ", 18, 1, 5, 1}; // Vida definida como 1
+    inimigos[BOSS2] = {" Paladino - Capitao", 20, 1, 5, 2}; // Vida definida como 1
+    inimigos[BOSS3] = {" Hidra - Coronel", 25, 1, 5, 3}; // Vida definida como 1
+    inimigos[BOSS4] = {" Lilith - Rainha das trevas ", 28, 1, 5, 4}; // Vida definida como 1
+    inimigos[BOSS5] = {"Byuuri", 30, 1, 5, 5}; // Vida definida como 1
+}
+
+int Inimigo_generico::dano(TipoInimigo tipoInimigo) const {
+    return inimigos[tipoInimigo].dano;
+}
+
+string Inimigo_generico::nome(TipoInimigo tipoInimigo) const {
+    return inimigos[tipoInimigo].nome;
+}
+
+int Inimigo_generico::lvl_inimigo(TipoInimigo tipoInimigo) const{
+    return inimigos[tipoInimigo].lvl;
+}
+
+int Inimigo_generico::sqm_lvl(TipoInimigo tipoInimigo) const{
+    return inimigos[tipoInimigo].sqm_level;
+}
+
+int Inimigo_generico::barraVida(TipoInimigo tipoInimigo) const {
+    return inimigos[tipoInimigo].barraVida;
+}
+
+void Inimigo_generico::sofrendoDano(CriandoInimigo &inimigo, CriandoItem &item){
+     inimigo.barraVida = inimigo.barraVida - item.Dano;
+     if(inimigo.barraVida < 0){
+        inimigo.barraVida = 0;
+     }
+     
+} 
 
 
 
