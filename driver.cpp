@@ -1,5 +1,5 @@
 #include <iostream>
-#include "rpg.h"
+#include <rpg.h>
 #include <random>
 #include <cstdlib>
 
@@ -37,6 +37,8 @@ void exibindoAtaque(Heroi &meuHeroi);
 void apresentacaoInimigo(int &nivel_jogo);
 void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo);
 void fimDeJogo(string &nome);
+void TratarErro();
+void TrataduasOpcao(int &opc, int max_opc); 
 
 int main(){
 
@@ -87,15 +89,16 @@ int main(){
 
         cout << "Antes de iniciar sua jornada, voce ganhou um presente!  Escolha entre os dois tipos de bau que se abrem diante de voce, mas escolha com sabedoria!" << endl;
         cout << "O destino de OOO pode depender de suas decisoes..." << endl << endl;
-        cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
+        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
         cin >> opc;
         TratarErro();
 
         bau_encontrado(ItemMao, armazem_itens_pocoes, armazem_itens_armas, meuHeroi.cintoHeroi(), meuHeroi.mochilaHeroi()); // Funçao do BAU
 
-        cout << "Certo, agora estamos prontos para continuar a nossa jornada!"<<endl<<"[Digite qualquer tecla numerica para continuar!]"<<endl<<endl;
+        cout << "Certo, agora estamos prontos para continuar a nossa jornada!"<<endl<<endl;
+        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
         cin >> opc;
-        TratarErro()
+        TratarErro();
 
         system("cls");
 
@@ -106,7 +109,8 @@ int main(){
             sqm_batalha = 1;
             
             system("cls");
-            cout << "Voce acabou de chegar no lvl " << nivel_jogo << endl;
+            cout << "Voce acabou de chegar no lvl " << nivel_jogo << endl<<endl;
+            cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
             cin >> opc;
             TratarErro();
             system("cls");
@@ -115,7 +119,8 @@ int main(){
 
                 system("cls");
 
-                cout << "Voce esta indo em direcao ao sqm: " << sqm_batalha << endl;
+                cout << "Voce esta indo em direcao ao sqm: " << sqm_batalha << endl<<endl;
+                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                 cin >> opc;
                 TratarErro();
 
@@ -135,20 +140,7 @@ int main(){
 
                 cout << "Pessione [1] para avancar para o proximo SQM"<<endl;
                 cin >> opc;
-                while(true){
-                    cin<<opc;
-                    if(cin.fail){
-                        cout<< "Digite um numero valido por favor"<< endl;
-                        TratarErro();
-                        continue;
-                
-                    }
-                    if (opc!=1){
-                        cout << "você deve pressionar 1 para avançar"<< endl;
-                    }else {
-                        break
-                    }
-                }
+                TrataduasOpcao(opc, 1);
 
                 system("cls");
 
@@ -157,7 +149,8 @@ int main(){
                 if(sqm_batalha == 5){
                     
                     system("cls");
-                    cout << "Voce chegou ao final deste lvl, prepare-se para uma batalha epica contra: " << inimig_deste_sqm.nome << endl;
+                    cout << "Voce chegou ao final deste lvl, prepare-se para uma batalha epica contra: " << inimig_deste_sqm.nome << endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                     system("cls");
@@ -178,6 +171,7 @@ int main(){
                     
                         cout << "Com sorte, voce conseguiu passar sorrateiramente por " << inimig_deste_sqm.nome << " sem ser notado!" << endl;
                         cout << "Mas a sorte te acompanhou na busca pelo bau!  Que sorte a sua!" << endl << endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
 
@@ -192,7 +186,8 @@ int main(){
                     if(seekValue_proximo_passo == 2 || seekValue_proximo_passo == 3){
                         
                         system("cls");
-                        cout << "Voce encontrou: " << inimig_deste_sqm.nome << " prepare-se para uma batalha epica!"<<endl;
+                        cout << "Voce encontrou: " << inimig_deste_sqm.nome << " prepare-se para uma batalha epica!"<<endl<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
                         system("cls");
@@ -214,6 +209,7 @@ int main(){
                         cout << "Com sorte, voce conseguiu passar sorrateiramente por " << inimig_deste_sqm.nome << " sem ser notado!" << endl;
                         cout << "Mas a sorte nao te acompanhou na busca pelo bau...  Que pena!" << endl << endl;
                         cout << "Porem essa e a sua chance de gerenciar os itens da Mochila e o Cinto, aproveite a oportunidade heroi!"<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
 
@@ -225,20 +221,9 @@ int main(){
 
                             cout << "[1] Para acessar o gerenciador de cinto/mochila"<<endl<<"[2] Para sair do SQM atual."<<endl;
                             cin >> opc;
-                    
-                                cin >> opc;
-                                if(cin.fail()){
-                                    cout<< "Digite um número válido por favor"<<endl;
-                                    TratarErro();
-                                    continue;
-                                }
-                                if(opc != ! && opc !=2){
-                                    cout<< "Você deve pressionar escolher 1 ou 2 para avancar"<<endl;
-                                }else{
-                                    break;
-                                    
-                                }
-                            
+                            TrataduasOpcao(opc, 2);
+                            system("cls");
+
                             if(opc == 1){
                                 gerenciando_cinto(meuHeroi.maoHeroi(), meuHeroi.cintoHeroi(), meuHeroi.mochilaHeroi());
                             }else{
@@ -260,27 +245,37 @@ int main(){
                     case 1:
                         cout << "Parabens! Voce superou o Arcanjo e seu legado de lealdade cega!" << endl;
                         cout << "A justica prevaleceu sobre a tirania, e o reino de OOO agradece!" << endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl<<endl;
                         cin >> opc;
+                        TratarErro();
                         break;
                     case 2:
                         cout << "Parabens! Voce enfrentou a furia do Paladino e provou que o poder nao se resume a forca bruta!" << endl;
                         cout << "A estrategia e a inteligencia foram suas armas, e voce provou ser digno de liderar!" << endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl<<endl;
                         cin >> opc;
+                        TratarErro();
                         break;
                     case 3:
                         cout << "Parabens! Voce desvendou o enigma da Hidra e liberou-a da obsessao pelo conhecimento proibido!" << endl;
                         cout << "A magia e o conhecimento podem ser perigosos, mas voce provou que pode controla-los com sabedoria!" << endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl<<endl;
                         cin >> opc;
+                        TratarErro();
                         break;
                     case 4:
                         cout << "Parabens! Voce desafiou o reino das trevas de Lilith e provou que a luz sempre vence as trevas!" << endl;
                         cout << "A esperanca renasceu em OOO, e o caminho para a liberdade esta mais proximo!" << endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl<<endl;
                         cin >> opc;
+                        TratarErro();
                         break;
                     case 5:
                         cout << "Parabens! Voce superou a prova de Byuuri e mostrou que e digno de libertar OOO e God Monckey!" << endl;
                         cout << "A jornada foi longa e perigosa, mas voce provou ser um verdadeiro heroe!" << endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl<<endl;
                         cin >> opc;
+                        TratarErro();
                         break;
                     default:
                         cout << "Parabens! Voce completou o nivel " << nivel_jogo << endl;
@@ -300,36 +295,40 @@ int main(){
             switch (nivel_jogo) {
                 case 1:
                     cout << "Infelizmente voce nao foi pareo para o Arcanjo e sua guarda real!" << endl;
-                    cout << "O reino de OOO ainda precisa de um heroe mais forte..." << endl;
+                    cout << "O reino de OOO ainda precisa de um heroe mais forte..." << endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                     system("cls");
                     break;
                 case 2:
                     cout << "A furia do Paladino se mostrou inabalavel!  Voce nao conseguiu superar sua estrategia e forca." << endl;
-                    cout << "O mar de OOO ainda e dominado pelo medo..." << endl;
+                    cout << "O mar de OOO ainda e dominado pelo medo..." << endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
-
                     system("cls");
                     break;
                 case 3:
                     cout << "A Hidra e seus enigmas provaram ser muito fortes! Voce nao conseguiu desvendar os segredos da magia." << endl;
-                    cout << "O conhecimento proibido permanece escondido..." << endl;
+                    cout << "O conhecimento proibido permanece escondido..." << endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                     system("cls");
                     break;
                 case 4:
                     cout << "O reino das trevas de Lilith se mostrou implacavel! Voce nao conseguiu vencer a escuridão!" << endl;
-                    cout << "A esperanca ainda luta para renascer em OOO..." << endl;
+                    cout << "A esperanca ainda luta para renascer em OOO..." << endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                     system("cls");
                     break;
                 case 5:
                     cout << "Byuuri, a divindade de OOO, te provou que ainda nao esta pronto para libertar o reino!" << endl;
-                    cout << "A luta contra o mal continua..." << endl;
+                    cout << "A luta contra o mal continua..." << endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                     system("cls");
@@ -338,7 +337,8 @@ int main(){
                     break;
             }
 
-            cout << "Infelizmente voce perdeu! Voce parou no nivel: " << nivel_jogo << " no sqm " << sqm_batalha << endl;
+            cout << "Infelizmente voce perdeu! Voce parou no nivel: " << nivel_jogo << " no sqm " << sqm_batalha << endl <<endl;
+            cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
             cin >> opc;
             TratarErro();
             system("cls");
@@ -351,9 +351,9 @@ int main(){
         }
         
         cout << "Deseja iniciar novamente: " << nome_usuario << " ?" << endl;
-        cout << "[1] Sair do game"<<endl<<"[2] Jogar novamente"<<endl;
+        cout << "[1] Sair do game"<<endl<<"[2] Jogar novamente"<<endl<<endl;
         cin >> opc;
-        TratarErro();
+        TrataduasOpcao(opc,2);
 
         if(opc == 1){
             system("cls");
@@ -530,8 +530,7 @@ void criandoBau(List &bau, List &armazen){
     }
 }
 
-void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &armazem_itens_armas, List &cinto, Mochila &mochila)
-{
+void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &armazem_itens_armas, List &cinto, Mochila &mochila){
     
     system("cls");
 
@@ -551,11 +550,7 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
 
     cout << "Voce encontrou um bau, escolha qual deve ser o tipo dele:"<<endl<<"[1] - Pocoes"<<endl<<"[2] - Armas" <<endl;
     cin >> opc;
-    TrataduasOpcao();
-    
-    }
-
-
+    TrataduasOpcao(opc, 2);
 
     switch (opc)
     {
@@ -620,7 +615,8 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
                         }
                     }else{
                         system("cls");
-                        cout << "Este slot do bau esta vazio!"<<endl;
+                        cout << "Este slot do bau esta vazio!"<<endl<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
                     }
@@ -690,6 +686,7 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
                 }else{
                     system("cls");
                     cout << "Este slot do bau esta vazio!"<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                 }
@@ -739,7 +736,7 @@ void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila){
 
             cout << "Decida o que voce ira fazer com este slot?: "<<endl<<"[1] Armazenar item da mao"<<endl<<"[2] Armazenar ultimo item colocado na mochila"<<endl;
             cin >> opc;
-            TrataduasOpcao();
+            TrataduasOpcao(opc, 2);
 
             system("cls");
 
@@ -788,7 +785,7 @@ void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila){
 
         cout << "Decida o que voce ira fazer com este item?: "<< exibindoItem.Nome <<endl<<"[1] - Colocar item na mao"<<endl<<"[2] - Colocar item no cinto"<<endl<<"[3] - Descartar item"<<endl;
         cin >> opc;
-        TratarErro();
+        TrataduasOpcao(opc, 3);
 
         system("cls");
 
@@ -819,7 +816,7 @@ void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila){
 
                 cout << "Ja existe um item alocado neste slot, deseja descartar ele?: "<<endl<<"[1] Sim"<<endl<<"[2] Nao"<<endl;
                 cin >> opc;
-                TrataduasOpcao();
+                TrataduasOpcao(opc, 2);
 
                 system("cls");
 
@@ -827,8 +824,10 @@ void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila){
 
                     cinto.Replace(exibindoItem, slot_guardar, statusPeso);
                     if(statusPeso == 0){
-                        cout << "O cinto esta pesado demais!" <<endl;
+                        cout << "O cinto esta pesado demais!" <<endl<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
+                        TratarErro();
                     }
 
                     break;
@@ -840,7 +839,8 @@ void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila){
             }else {
                 cinto.Replace(exibindoItem, slot_guardar, statusPeso);
                 if(statusPeso == 0){
-                    cout << "O cinto esta pesado demais!" <<endl;
+                    cout << "O cinto esta pesado demais!" <<endl<<endl;
+                    cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                     cin >> opc;
                     TratarErro();
                 }
@@ -1044,7 +1044,7 @@ void acessandoCintoNaBatalha(List &cinto, CriandoItem &MaoHeroi, Mochila &mochil
         // Menu de opções para o usuário;
         cout << "Escolha a sua opcao: "<<endl<<"[1] colocar item do cinto na mao"<<endl<<"[2] guardar item no cinto"<<endl<<"[3] sair do gerenciador de cinto na batalha"<<endl;
         cin >> opc;
-        TratarErro();
+        TrataduasOpcao(opc, 2);
 
         system("cls");
 
@@ -1096,7 +1096,7 @@ void acessandoCintoNaBatalha(List &cinto, CriandoItem &MaoHeroi, Mochila &mochil
 
                         cout << "Ja existe um item alocado neste slot, deseja descartar ele?: "<<endl<<"[1] Sim"<<endl<<"[2] Nao"<<endl;
                         cin >> opc;
-                        TrataduasOpcao();
+                        TrataduasOpcao(opc, 2);
 
                         system("cls");
 
@@ -1129,7 +1129,8 @@ void acessandoCintoNaBatalha(List &cinto, CriandoItem &MaoHeroi, Mochila &mochil
                         cinto.Replace(MaoHeroi, slot_guardar, statusPeso);
 
                         if(statusPeso == 0){
-                                cout << "O cinto esta pesado demais!" <<endl;
+                                cout << "O cinto esta pesado demais!" <<endl<<endl;
+                                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                                 cin >> opc;
                                 TratarErro();
                             }else{
@@ -1312,7 +1313,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
             if(seekValue_proximo_passo == 2){
 
                 system("cls");
-                cout << "Voce encontrou um Bau bonus!"<<endl;
+                cout << "Voce encontrou um Bau bonus!"<<endl<<endl;
+                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                 cin >> opc;
                 TratarErro();
                 system("cls");
@@ -1330,6 +1332,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
                 cout << "Agora que voce chegou no sqm " << sqm_batalha << " Voce ira enfrentar o chefe deste nivel, sendo ele: "<<endl<<endl;
                 exibindoInimigo(Inimigo);
 
+                cout << endl<<endl;
+                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                 cin >> opc;
                 TratarErro();
 
@@ -1337,6 +1341,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
             }else{
                 exibindoInimigo(Inimigo);
 
+                cout << endl<<endl;
+                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                 cin >> opc;
                 TratarErro();
 
@@ -1344,8 +1350,11 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
             
             system("cls");
 
-            cout << "Voce ira entrar em modo batalha agora!: " << endl;
+            cout << "Voce ira entrar em modo batalha agora!: " << endl<<endl;
+            cout << endl;
+            cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
             cin >> opc;
+            TratarErro();
 
             system("cls");
 
@@ -1361,7 +1370,7 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
                 cout << "[3] - Consumir item Cura [caso estiver na mao]" << endl;
 
                 cin >> opc;
-                TratarErro();
+                TrataduasOpcao(opc, 3);
 
                 switch (opc)
                 {
@@ -1374,7 +1383,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
                         exibindoAtaque(meuHeroi);
                         exibindoInimigo(Inimigo);
                         
-                        cout << "Dar dano no inimigo: " <<endl;
+                        cout << "Dar dano no inimigo: " <<endl<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
 
@@ -1385,7 +1395,9 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
 
                             if(Inimigo.barraVida == 0){
                                 status_batalha = 0;
-                                cout << "Parabens voce derrotu o inimigo!"<<endl;
+                                cout << "Parabens voce derrotu o inimigo!"<<endl<<endl;
+
+                                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                                 cin >> opc;
                                 TratarErro();
                                 break;
@@ -1398,7 +1410,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
                         exibindoAtaque(meuHeroi);;
                         exibindoInimigo(Inimigo);
 
-                        cout << "Vez do inimigo: " <<endl;
+                        cout << "Vez do inimigo: " <<endl<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
 
@@ -1414,7 +1427,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
                                 status_batalha = 0;
                                 status_heroi = 0;
                                 exibindoHubdeBatalha(meuHeroi);
-                                cout << "Voce perdeu o jogo!"<<endl;
+                                cout << "Voce perdeu o jogo!"<<endl<<endl;
+                                cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                                 cin >> opc;
                                 TratarErro();
                                 system("cls");
@@ -1428,7 +1442,8 @@ void enfrentandoInimigo(Heroi &meuHeroi, int &status_heroi, int &seekValue_proxi
                             exibindoInimigo(Inimigo);
                         }
 
-                        cout << "Pressione qualquer para sair da rodada de ataque:"<<endl;
+                        cout << "Pressione qualquer para sair da rodada de ataque:"<<endl<<endl;
+                        cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
                         TratarErro();
 
@@ -1480,7 +1495,6 @@ void adicionandoItemNaMochilaFINDBau(Mochila &mochila, List &cinto, CriandoItem 
         cout << "O cinto esta pesado demais!" <<endl;
         cout << "Deseja adicionar item na mochila ou descartar?: "<<endl<<"[1] Guardar na mochila"<<endl<<"[2] Descartar item"<<endl;
         cin >> opc;
-        TratarErro();
         
         switch (opc)
         {
@@ -1510,7 +1524,6 @@ void verificandoPesoCinto(List &cinto, CriandoItem &Mao, int &slot, int &statusP
     }else{
         cout << "O cinto esta pesado demais!" <<endl;
         cin >> opc;
-        TratarErro();
     }
 
 }
@@ -1525,7 +1538,6 @@ void introducaoAomundo(){
     cout << "Aqui, a magia se entrelaça com a tecnologia, e a fe se mistura com a brutalidade. Voce esta pronto para enfrentar os desafios que OOO lhe reserva?" << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a primeira parte da introdução
 
     system("cls");
@@ -1533,7 +1545,6 @@ void introducaoAomundo(){
     cout << "O Herdeiro Rebelde" << endl << endl; 
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após o título
 
     cout << "Desde a infancia, fui acolhido pelo grandioso God Monckey, o rei de Sakhur, apos ser abandonado pelos meus pais." << endl;
@@ -1541,14 +1552,12 @@ void introducaoAomundo(){
     cout << "Cresci em meio ao caos do mundo de OOO, forjado nas batalhas e nos ensinamentos do rei." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a primeira parte da história
 
     cout << "God Monckey ja tinha cinco filhos: o Paladino, capitao da frota imperial; o Arcanjo, sargento da guarda real; a Hidra, coronel e aspirante a General da frota de feiticeiros; e a rebelde Lilith, a Rainha das Trevas, que, apos se rebelar contra o pai, agora servia ao imperio como mercenaria." << endl;
     cout << "e por ultimo! porem a mais poderosa: Byuuri, uma divindade poderosa, sendo ela minha companheira desde a infancia, a mais forte entre os filhos do rei." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a segunda parte da história
 
     cout << "Em minhas missoes pelo reino, sempre em busca de provar meu valor e conquistar o mundo, me vi diante de uma batalha crucial: a destruicao de uma vila." << endl;
@@ -1557,7 +1566,6 @@ void introducaoAomundo(){
     cout << "Tudo o que eu fazia em nome do reino era errado." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a terceira parte da história
 
     cout << "A partir daquele dia, me tornei um rebelde." << endl; 
@@ -1566,7 +1574,6 @@ void introducaoAomundo(){
     cout << "Minha luta por God Monckey e seus sonhos de dominacao era desonesta e cruel." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a quarta parte da história
 
     cout << "God Monckey, apesar da dor de ver seu filho rebelde, compreendia meu dilema." << endl;
@@ -1574,7 +1581,6 @@ void introducaoAomundo(){
     cout << "Ele sempre me viu como um herdeiro digno, mas a guerra o havia cegado para a crueldade de suas acoes." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a quinta parte da história
 
     cout << "Minha antiga companheira, Byuuri, tambem foi confrontada por minhas decisoes." << endl;
@@ -1583,7 +1589,6 @@ void introducaoAomundo(){
     cout << "Sua decisao, tomada com pesar, era um reflexo do amor e da lealdade que sentia por God Monckey." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a sexta parte da história
 
     cout << "Agora, sou um fugitivo." << endl; 
@@ -1592,14 +1597,12 @@ void introducaoAomundo(){
     cout << "Mas, mesmo com a sentenca de morte pairando sobre mim, luto por aquilo que acredito: minha liberdade, meu povo e meu sangue." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a sétima parte da história
 
     cout << "Para conquistar minha redencao e impedir a tirania do rei, terei que derrotar inumeros inimigos, ate chegar ao proprio God Monckey e, finalmente, confronta-lo em um combate final." << endl;
     cout << "So assim, um novo rei podera ser coroado, e eu poderei viver em paz, livre da furia de meu antigo pai, mas tambem da sombra de seus erros." << endl << endl;
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TratarErro();
     system("cls"); // Limpa a tela após a última parte da história
 
     system("cls");
@@ -1640,7 +1643,6 @@ void introducaoGame(){
 
     cout << "[Digite qualquer tecla numerica para continuar!]"<<endl;
     cin >> opc;
-    TrataduasOpcao();
 
     system("cls");
 }
@@ -1669,31 +1671,26 @@ void apresentacaoInimigo(int &nivel_jogo){
             cout << "O Legado do Arcanjo" << endl << endl;
             cout << "O Arcanjo, filho mais velho de God Monckey, te espera!" << endl << "Ele sempre foi um protetor leal, comandando a guarda real e jurando defender o reino com sua vida." << endl << "No entanto, sua lealdade cega o levou a cometer atos cruéis em nome do rei." << endl << "Prepare-se para enfrentar sua força e lealdade!"<<endl;
             cin >> opc;
-            TratarErro();
             break;
         case 2:
             cout << "A Fúria do Paladino" << endl << endl;
             cout << "O Paladino, capitao da frota imperial, se coloca em seu caminho!" << endl << "Ele era um mestre da estrategia e da batalha naval, liderando inumeras conquistas e levando o medo ao coracao dos inimigos de God Monckey." << endl << "Sua ambicao o corrompeu, e ele buscava usurpar o trono para si." << endl << "Prepare-se para confrontar sua furia e provar que o poder nao se resume a forca bruta!" << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 3:
             cout << "O Enigma da Hidra" << endl << endl;
             cout << "A Hidra, uma poderosa feiticeira, te desafia!" << endl << "Ela comandava a frota de magos do reino, usando seus poderes para conquistar inimigos e defender o reino." << endl << "No entanto, seus poderes a corromperam, e ela se tornou obcecada por conhecimento proibido." << endl << "Prepare-se para enfrentar seus poderes, decifrar seus enigmas e liberta-la da escuridão!" << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 4:
             cout << "O Reino das Trevas de Lilith" << endl << endl;
             cout << "Lilith, a Rainha das Trevas, se levanta para te enfrentar!" << endl << "Ela foi a primeira filha de God Monckey a se rebelar contra ele, buscando o poder e a dominacao total, utilizando seus poderes obscuros para destruir tudo que estava em seu caminho." << endl << "Agora, ela lidera um exercito de criaturas das trevas." << endl << "Prepare-se para desafiar seus poderes de sombras!" << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 5:
             cout << "A Prova de Byuuri" << endl << endl;
             cout << "Byuuri, a divindade mais poderosa de OOO, te coloca a prova!" << endl << "Ela e a unica que compreende verdadeiramente God Monckey, e a unica que pode salva-lo da escuridão que o domina." << endl << "Apesar da amizade que sempre nutrimos, ela escolheu permanecer ao lado de seu pai." << endl << "Prepare-se para enfrentar a prova de Byuuri, use sua forca e sua inteligencia para libertar o reino e o proprio God Monckey." << endl << "Talvez, com sua vitoria, voce possa convencê-la a se juntar a sua causa." << endl;
             cin >> opc;
-            TratarErro();
             break;
         default:
             break;
@@ -1710,27 +1707,22 @@ void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo){
         case 1:
             cout << "A Floresta Encantada" << endl << "Voce adentra uma floresta magica, onde os segredos do reino se escondem." << endl << "Um bau com itens valiosos te espera, mas cuidado com a Fenix, uma criatura lendaria que guarda um antigo segredo." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 2:
             cout << "O Campo de Batalha" << endl << "Voce chega a um campo de treinamento militar, onde os guerreiros de God Monckey aprimoravam suas habilidades." << endl << "Um caminho livre se abre diante de voce, mas um grupo de soldados te espera para uma luta brutal." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 3:
             cout << "A Torre do Conhecimento" << endl << "Uma torre antiga, onde os feiticeiros de OOO aprendiam magia, se levanta diante de voce." << endl << "Um bau com livros raros e pocoes pode ser seu, mas cuidado com o mago renegado que guarda um conhecimento proibido." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 4:
             cout << "O Vale dos Perdidos" << endl << "Voce chega a um vale desolado, onde os soldados derrotados de God Monckey foram deixados para morrer." << endl << "Um caminho livre se abre diante de voce, mas um fantasma vingativo vagueia pela regiao, a alma de um soldado que foi traido pelo rei." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 5:
             cout << "O Santuario do Arcanjo" << endl << "O santuario onde o Arcanjo orava, um local de grande poder magico, te espera." << endl << "Prepare-se para a batalha final contra o Arcanjo, que te confrontara com sua forca e suas crencas." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         default:
             break;
@@ -1743,27 +1735,22 @@ void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo){
         case 1:
             cout << "O Porto de Tempestades" << endl << "Um porto agitado e cheio de navios te recebe." << endl << "Um bau com mapas e municoes pode ser seu, mas cuidado com os piratas que te desafiarao para uma batalha naval." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 2:
             cout << "A Muralha de Ferro" << endl << "Voce chega a uma muralha impenetravel, construida para proteger o reino de OOO." << endl << "Um caminho livre se abre diante de voce, mas um grupo de soldados de elite vigia a muralha." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 3:
             cout << "O Labirinto das Sombras" << endl << "Voce entra em um labirinto subterraneo, onde os espiritos de marinheiros perdidos vagam." << endl << "Um bau com reliquias e tesouros pode ser seu, mas cuidado com o monstro marinho que se alimenta de almas perdidas." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 4:
             cout << "A Fortaleza do Paladino" << endl << "Uma fortaleza inexpugnavel, onde o Paladino planeja suas estrategias, se ergue diante de voce." << endl << "Um caminho livre se abre diante de voce, mas um grupo de espioes tenta sabotar sua missao." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         case 5:
             cout << "A Batalha Final" << endl << "O Paladino, com sua frota de navios, te espera para uma batalha naval epica." << endl << "Voce precisara de toda a sua habilidade e estrategia para derrota-lo e superar sua furia." << endl << endl;
             cin >> opc;
-            TratarErro();
             break;
         default:
             break;
@@ -1776,27 +1763,22 @@ void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo){
         case 1:
             cout << "A Biblioteca Proibida" << endl << "Uma biblioteca antiga, onde livros de magia e conhecimento proibido sao guardados, se abre diante de voce." << endl << "Um bau com livros raros e itens magicos pode ser seu, mas cuidado com o guardião magico que protege o conhecimento da biblioteca." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 2:
             cout << "A Floresta do Silencio" << endl << "Uma floresta onde a magia e tao forte que silencia qualquer som, se estende diante de voce." << endl << "Um caminho livre se abre diante de voce, mas cuidado com o Pesadelo, uma criatura mitica que se alimenta de sonhos e pensamentos." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 3:
             cout << "A Cidade dos Espelhos" << endl << "Voce chega a uma cidade onde cada espelho reflete um mundo diferente, cheio de ilusoes e magia." << endl << "Um bau com artefatos magicos pode ser seu, mas cuidado com o espelho maligno que aprisiona as almas dos humanos." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 4:
             cout << "O Labirinto da Hidra" << endl << "Um labirinto complexo, onde a Hidra esconde seus segredos, te espera." << endl << "Um caminho livre se abre diante de voce, mas cuidado com os magos, seus servos, que te desafiarao para um duelo magico." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 5:
             cout << "A Sala do Enigma" << endl << "A sala onde a Hidra realizava seus experimentos magicos te espera." << endl << "Prepare-se para um desafio complexo, cheio de enigmas e armadilhas magicas.  Derrote a Hidra e liberte-a da escuridão que a domina." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         default:
             break;
@@ -1809,27 +1791,22 @@ void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo){
         case 1:
             cout << "O Cemiterio dos Herois" << endl << "Um cemiterio onde os soldados de God Monckey mortos em batalha estao enterrados, te recebe." << endl << "Um bau com armas amaldicoadas e itens de poder obscuro pode ser seu, mas cuidado com o necromante que controla os mortos-vivos." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 2:
             cout << "A Floresta da Noite Eterna" << endl << "Uma floresta onde a noite nunca termina, se estende diante de voce." << endl << "Um caminho livre se abre diante de voce, mas cuidado com o Demonio, uma criatura mitica que se alimenta de almas." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 3:
             cout << "O Castelo das Sombras" << endl << "Um castelo assombrado por fantasmas e criaturas das trevas te espera." << endl << "Um bau com itens magicos pode ser seu, mas cuidado com o vampiro que busca te transformar em um de seus servos." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 4:
             cout << "O Labirinto do Medo" << endl << "Um labirinto que se alimenta de seus medos e te leva para um mundo de pesadelos, te desafia." << endl << "Um caminho livre se abre diante de voce, mas cuidado com os monstros que se transformam em suas piores lembrancas." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 5:
             cout << "A Sala do Trono" << endl << "O salão do trono de Lilith, onde ela te espera para um confronto final, te espera." << endl << "Derrote Lilith e quebre o dominio das trevas que assola OOO." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         default:
             break;
@@ -1842,27 +1819,22 @@ void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo){
         case 1:
             cout << "O Jardim da Esperança" << endl << "Um jardim magico, onde as flores representam a esperança de um futuro melhor para OOO, te recebe." << endl << "Um bau com sementes de arvores magicas e itens de cura pode ser seu, mas cuidado com o guardião, um golem de pedra que protege o jardim." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 2:
             cout << "O Rio da Memoria" << endl << "Um rio onde as memorias do passado fluem, te espera." << endl << "Um caminho livre se abre diante de voce, mas cuidado com o demonio que se alimenta de memorias e tenta te levar para o passado." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 3:
             cout << "A Torre das Ilusoes" << endl << "Uma torre onde as ilusoes te levam para mundos falsos e te desafiam a encontrar o caminho certo, te espera." << endl << "Um bau com itens magicos pode ser seu, mas cuidado com o mago que te tenta com ilusoes e sonhos." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 4:
             cout << "A Montanha Sagrada" << endl << "A montanha onde os deuses de OOO residem, te espera." << endl << "Um caminho livre se abre diante de voce, mas cuidado com o anjo caido que busca destruir a montanha e o reino." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         case 5:
             cout << "O Salão de Julgamento" << endl << "O salão onde Byuuri te espera para a prova final, te espera." << endl << "Voce tera que enfrentar sua forca e sua sabedoria para provar que e digno de libertar OOO e God Monckey." << endl << endl;
             cin >> opc; 
-            TratarErro();
             break;
         default:
             break;
@@ -1900,16 +1872,45 @@ void fimDeJogo(string &nome) {
     cout << endl;
 
     cin >> opc;
-    TratarErro();
 }
 
-void TratarErro (){
-    cin.Clear();
-    cin.ignore(1000,"/n")
+void TrataduasOpcao(int &opc, int max_opc) {
+
+    if(opc >= 1 && opc <= max_opc){
+        system("cls");
+        return;
+    }
+
+    do{
+        if (cin.fail()) {
+            cout << "Por favor digite um valor valido." << endl;
+            cin >> opc;
+            TratarErro();
+            continue;
+        }else{
+
+            cout << "Por favor escolha um numero entre 1 e " << max_opc << " para prosseguir." << endl;
+            cin >> opc;
+
+            if (opc < 1 || opc > max_opc) {
+                continue;
+            }else{
+                system("cls");
+                break;
+            }
+
+        }
+
+    }while(true);
 
 }
 
-void TrataduasOpcao(int &opc){
+void TratarErro() {
+    cin.clear(); 
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer de entrada
+}
+
+void suaFuncao(int &opc){
     while (true)
     {
         cin >> opc;
@@ -1918,7 +1919,7 @@ void TrataduasOpcao(int &opc){
             TratarErro();
             continue;
         }
-        if (opc !=1 && opc != 2){
+        if (opc < 1 && opc > 2){
             cout<< "Por favor escolha um numero entre 1 e 2 para prosseguir"<< endl;
 
         }else{break;}
