@@ -73,6 +73,7 @@ class Item {
 };
 
 // Criando Exports de variáveis globais, onde elas serão usadas no driver, para cada item e sua raridade;
+//itens de diferentes classe que podem ser ganhados durante a partida
 extern CriandoItem espada_comum;
 extern CriandoItem espada_raro;
 extern CriandoItem espada_lendario;
@@ -95,7 +96,7 @@ extern CriandoItem vazio;
 void criandoItens();
 
 // Criando os inimigos do RPG;
-enum TipoInimigo {
+enum TipoInimigo { // apenas os tipos dos inimigos que podem surgir durante o jogo aleatoriamente
     TIPO1,
     TIPO2,
     TIPO3,
@@ -124,46 +125,45 @@ enum TipoInimigo {
     NUM_TIPOS_DE_INIMIGOS
 };
 
-struct CriandoInimigo {
-    string nome;
-    int dano;
-    int barraVida;
-    int sqm_level;
-    int lvl;
+struct CriandoInimigo { // criacao do inimigo, todos os atributos que ele tem
+    string nome; // nome do inimigo
+    int dano; // dano do inimigo
+    int barraVida; // vida do inimigo
+    int sqm_level; //resistencia
+    int lvl; 
 };
 
-class Inimigo_generico {
+class Inimigo_generico { // uma classe para inimigos
     public:
-        Inimigo_generico();
+        Inimigo_generico(); //Inicializa um objeto da classe `Inimigo_generico` e chama a função para configurar os dados dos inimigos.
+        int dano(TipoInimigo tipoInimigo) const; //Retorna o dano causado pelo inimigo.
+        int barraVida(TipoInimigo tipoInimigo) const; //Retorna a barra de vida do inimigo
+        string nome(TipoInimigo tipoInimigo) const; //Retorna o nome do inimigo.
+        int sqm_lvl(TipoInimigo tipoInimigo) const; //Retorna o nível de SQM do inimigo
+        int lvl_inimigo(TipoInimigo tipoInimigo) const; //Retorna o nível geral do inimigo
 
-        int dano(TipoInimigo tipoInimigo) const;
-        int barraVida(TipoInimigo tipoInimigo) const;
-        string nome(TipoInimigo tipoInimigo) const;
-        int sqm_lvl(TipoInimigo tipoInimigo) const;
-        int lvl_inimigo(TipoInimigo tipoInimigo) const;
-
-        void sofrendoDano(CriandoInimigo &inimigo, CriandoItem &item);
-    private:
+        void sofrendoDano(CriandoInimigo &inimigo, CriandoItem &item); //funcao para tomar dano
+    private: //passando algumas coisas em private
         CriandoInimigo inimigos[NUM_TIPOS_DE_INIMIGOS];
-        void iniciandoInimigo();
+        void iniciandoInimigo();  // inicia o inimigo
 };
 
 // Mochila Usuario
 class Mochila {
     public:
-        Mochila();
-        ~Mochila();
-        bool Empty();
-        bool Full();
-        void Push(CriandoItem x);
-        void Pop(CriandoItem &x);
-        void Clear();
-        void Top(CriandoItem &x);
-        int Size();
-        void exibirMochila();
+        Mochila(); //construtor 
+        ~Mochila(); //destrutor
+        bool Empty(); // verifica esta vazia
+        bool Full(); // verifica se está cheia
+        void Push(CriandoItem x); // colocar elementos dentro da michila
+        void Pop(CriandoItem &x); // retira elementos da mochila
+        void Clear(); // limpa os elementos mantendo a estrutura
+        void Top(CriandoItem &x); // verificar o que esta no topo da mochila
+        int Size(); // tamanho da mochila, quantos itens..
+        void exibirMochila(); // exibi a mochila
     private:
 
-        struct StackNode {
+        struct StackNode { //logica da pilha com os ponteiros ensinado em aula
             CriandoItem Entry;
             StackNode *NextNode;
         };
@@ -173,30 +173,30 @@ class Mochila {
         StackPointer top;
 };
 
-class List{
+class List{ // criando uma estrutura de lista
     public:
         List(int maxList, int maxPeso);
         ~List();
         bool Empty();
         bool full();
-        bool fullPeso();
-        void Insert (CriandoItem x, int p);
-        void Delete(CriandoItem &x, int p);
-        int Size();
-        void Clear();
-        void Retrieve(CriandoItem &x, int p);
-        void Replace(CriandoItem x, int p, int &statusPeso);
-        void ExibirList();
+        bool fullPeso();  // verifica o peso
+        void Insert (CriandoItem x, int p); //insere itens 
+        void Delete(CriandoItem &x, int p); // remove itens
+        int Size(); //quantidade de itens
+        void Clear(); 
+        void Retrieve(CriandoItem &x, int p); // funcao que retorna um elemento
+        void Replace(CriandoItem x, int p, int &statusPeso); 
+        void ExibirList(); //exibe tudo
         int PesoAtual();
     private:
-        struct ListNode{
+        struct ListNode{ //logica da lista
             CriandoItem Entry;
             ListNode *NextNode;
         };
 
-        typedef ListNode*  ListPointer;
-        ListPointer head;
-        int count;
+        typedef ListNode*  ListPointer; // apenas renomeando
+        ListPointer head; // ponteiro head
+        int count; //contador
         int Max;
         int PesoMax;
         int Peso = 0;
@@ -204,13 +204,13 @@ class List{
 
 };
 
-class Heroi {
+class Heroi {// uma das classes principais, a do Heroi
     private:
-        int vida;
-        CriandoItem Mao;
+        int vida; // vida do heroi
+        CriandoItem Mao; //item na mao do heroi
         Mochila mochila;
-        List cinto;
-        string Nome;
+        List cinto; //cinto que tem a estrutura de lista
+        string Nome; // nome do heroi
     public:
         Heroi(int vidaInicial, string nome, int maxCinto, int pesoMaxCinto);
         int& vidaHeroi();
