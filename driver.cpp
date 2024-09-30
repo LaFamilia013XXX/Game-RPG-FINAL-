@@ -14,9 +14,9 @@ O que falta fazer?
 
 using namespace std;
 
-void inicializarArmazem_itens(List &x, int tipoBau);
-void criandoBau(List &bau, List &armazen);
-void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &armazem_itens_armas, List &cinto, Mochila &mochila);
+void inicializarArmazem_itens(List &x, int tipoBau); // Essa funcao e usada para prencher um armazem de itens tanto de pocoes como de armas
+void criandoBau(List &bau, List &armazen); // Funcao usada para criar o bau de acordo com o armazem, onde passo por referencia o Bau e a lista de itens, responsavel por gerar o bau de itens.
+void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &armazem_itens_armas, List &cinto, Mochila &mochila); // Funcao que gerencia a acao de encontrar o bau no meio do caminho, aqui passo por referencia valores que serao retornado e manipulados dentro desta função;
 void preenchendo_cinto(List &cinto);
 void exibindo_hub(List &cinto, Mochila &mochila, CriandoItem &mao, int &vida, string &nome);
 void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila);
@@ -51,7 +51,7 @@ int main(){
 
     system("cls");
 
-    // introducaoGame();
+    introducaoGame();
 
     system("cls");
 
@@ -85,7 +85,7 @@ int main(){
 
         // Introducao ao mundo e a historia;
 
-        // introducaoAomundo();
+        introducaoAomundo();
 
         cout << "Antes de iniciar sua jornada, voce ganhou um presente!  Escolha entre os dois tipos de bau que se abrem diante de voce, mas escolha com sabedoria!" << endl;
         cout << "O destino de OOO pode depender de suas decisoes..." << endl << endl;
@@ -421,7 +421,9 @@ void preenchendo_cinto(List &cinto){
 
 void inicializarArmazem_itens(List &x, int tipoBau) {
 
-    int retorno = 1;
+    // int retorno = 1; 
+
+    // Aqui prencho cada armazem de item de forma aleatorio com os itens de raridades.
 
     if(tipoBau == 1){
         x.Insert(espada_comum,  1);
@@ -514,8 +516,11 @@ void inicializarArmazem_itens(List &x, int tipoBau) {
 
 void criandoBau(List &bau, List &armazen){
     
-    for(int i=1; i<=bau.Size(); i++){
+    // Aqui crio o bau de acordo com o seu tamanho, sendo neste caso 3.
 
+    for(int i=1; i<=bau.Size(); i++){
+        
+        // Ele ira sortear numeros aleatorios e ira retirar do armazem e adicionando no bau.
         random_device rd; 
         mt19937 gen(rd());
 
@@ -524,9 +529,9 @@ void criandoBau(List &bau, List &armazen){
         int seekValue = distrib(gen); 
         
         CriandoItem item_selecionado;
-        armazen.Retrieve(item_selecionado, seekValue);
+        armazen.Retrieve(item_selecionado, seekValue); // Tirando do armazem;
         
-        bau.Insert(item_selecionado, i);
+        bau.Insert(item_selecionado, i); // Adicionando o bau.
     }
 }
 
@@ -534,15 +539,15 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
     
     system("cls");
 
-    List bau_armas(3, 1000); // Declarando Bau de itens;
+    List bau_armas(3, 1000); // Declarando Bau de itens, o valor 1000 ao lado é em relação ao peso, como cada lista tem um limite de peso defindo na sua declaração, neste caso como se trata de um bau que ira receber 3 itens, o defini como 1000 para não ter problemas.;
     List bau_pocoes(3, 1000); // Declarando Bau de itens;
-    int add_item_mochila; 
-    CriandoItem exibindoItem; 
+    int add_item_mochila; // Adicionar o item na mochila, caso a opção for atendida;
+    CriandoItem exibindoItem; // Exibir o item escolhido do bau para o usuario;
 
-    criandoBau(bau_pocoes, armazem_itens_pocoes);
-    criandoBau(bau_armas, armazem_itens_armas);
+    criandoBau(bau_pocoes, armazem_itens_pocoes); // Gerando os baus;
+    criandoBau(bau_armas, armazem_itens_armas); // Gerando os baus;
 
-    int opc, slot, statusPeso;
+    int opc, slot, statusPeso; // Variaveis de controle, sendo OPC, o SLOT, e o StatusPeso (ela sempre irá retornar um valor 0 [acima do peso], ou 1 [o peso máximo não foi atingido ainda]);
     int retorno = 1;
 
     cout << ""<<endl;
@@ -550,8 +555,9 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
 
     cout << "Voce encontrou um bau, escolha qual deve ser o tipo dele:"<<endl<<"[1] - Pocoes"<<endl<<"[2] - Armas" <<endl;
     cin >> opc;
-    TrataduasOpcao(opc, 2);
+    TrataduasOpcao(opc, 2); // Fazendo o tratamento da resposta do usuario, assim evitando erro;
 
+     // Executa ações de acordo com a escolha do jogador.
     switch (opc)
     {
     case 1:
@@ -559,28 +565,31 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
 
                 system("cls");
 
+                // Exibe os itens no baú de poções.
                 cout << "Esse itens foram encontrados no bau, digite um valor para escolher o seu item!" << endl << endl;
                 cout << "----x BAU x ----" << endl;
-                bau_pocoes.ExibirList();
+                bau_pocoes.ExibirList(); // Exibindo bau com os itens gerados;
                 cout << "----x BAU x ----" << endl;
                 
                 cin >> slot;
-                TrataduasOpcao(slot, 3);
+                TrataduasOpcao(slot, 3); // Fazendo o tratamento da resposta do usuario, assim evitando erro;
 
-                bau_pocoes.Retrieve(exibindoItem, slot);
+                // Obtem o item selecionado do baú.
+                bau_pocoes.Retrieve(exibindoItem, slot); // Retirando do bau o item escolhido pelo usuario;
 
+                // Se o item não for "vazio", ele é um item utilizável.
                 if(exibindoItem.Nome != "vazio"){
                     system("cls");
-                
+
                         cout << "Decida o que voce ira fazer com este item?: "<< exibindoItem.Nome <<endl<<"[1] - Colocar no cinto "<<endl<<"[2] - Colocar na mochila "<<endl<<"[3] - Descartar item/bau"<<endl;
                         cin >> add_item_mochila;
-                        TrataduasOpcao(add_item_mochila, 3);
+                        TrataduasOpcao(add_item_mochila, 3); // Fazendo o tratamento da resposta do usuario, assim evitando erro;
 
                         system("cls");
 
                         switch (add_item_mochila)
                         {
-                        case 1:
+                        case 1:  // Adicionar item ao cinto.
 
                             bau_pocoes.Retrieve(ItemMao, slot);
                                 
@@ -588,10 +597,12 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
                             cinto.ExibirList();
                             cout << endl;
 
+                            // Lê o slot para substituir e trata a entrada.
                             cout << "Selecione o slot ou item para substituir [ Caso ja tiver um item no lugar ele sera descartado ]: "<<endl;
                             cin >> slot;
                             TrataduasOpcao(slot, 4);
 
+                            // Adciona o item ao cinto.
                             adicionandoItemNaMochilaFINDBau(mochila, cinto, ItemMao, slot, statusPeso);
 
                             system("cls");
@@ -600,14 +611,14 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
                             break;
                         case 2:
                             
-                            bau_pocoes.Retrieve(ItemMao, slot);
+                            bau_pocoes.Retrieve(ItemMao, slot); // Obtem o item selecionado.
 
-                            mochila.Push(ItemMao);
+                            mochila.Push(ItemMao); // Função para adicionar o item à mochila.
                             system("cls");
                             return;
 
                             break;
-                        case 3:
+                        case 3: // Descartar item/baú.
                             system("cls");
                             return;
 
@@ -616,14 +627,15 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
                             break;
                         }
                     }else{
+                        // Caso o slot estiver vazio ele retorna esta mensagem;
                         system("cls");
                         cout << "Este slot do bau esta vazio!"<<endl<<endl;
                         cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
                         cin >> opc;
-                        TratarErro();
+                        TratarErro(); // Função para tratar erros.
                     }
                 }
-    case 2:
+    case 2: // Caso o jogador escolha armas.
            while(true){
 
                 system("cls");
@@ -632,40 +644,48 @@ void bau_encontrado(CriandoItem &ItemMao, List &armazem_itens_pocoes, List &arma
                 cout << "----x BAU x ----" << endl;
                 bau_armas.ExibirList();
                 cout << "----x BAU x ----" << endl;
+                // Lê o slot escolhido pelo jogador e trata a entrada.
                 cin >> slot;
-                TrataduasOpcao(slot, 4);
+                TrataduasOpcao(slot, 4); // Função para tratar a entrada do usuário.
 
+                 // Se o jogador escolher 5, descarta o baú e retorna.
                 if(slot == 5){
                     return;
                     break;
                 }
-
-                bau_armas.Retrieve(exibindoItem, slot);
-
-                if(exibindoItem.Nome != "vazio"){
-                    system("cls");
                 
+                // Obtem o item selecionado do baú.
+                bau_armas.Retrieve(exibindoItem, slot); // Função para recuperar o item da lista.
+
+                // Se o item não for "vazio", ele é um item utilizável.
+                if(exibindoItem.Nome != "vazio"){
+                    system("cls");  
+
+                    // Usuário irá decidir o que irá fazer com este item;
                     cout << "Decida o que voce ira fazer com este item?: "<< exibindoItem.Nome <<endl<<"[1] - Colocar no cinto "<<endl<<"[2] - Colocar na mochila "<<endl<<"[3] - Descartar item/bau"<<endl;
                     cin >> add_item_mochila;
                     TrataduasOpcao(add_item_mochila, 3);
 
                     system("cls");
 
+                    // Executa ações de acordo com a escolha do jogador.
                     switch (add_item_mochila)
                     {
                     case 1:
 
                         bau_armas.Retrieve(ItemMao, slot);
-                            
+                        
+                         // Exibe os itens no cinto.
                         cout << endl;
                         cinto.ExibirList();
                         cout << endl;
 
+                        // Lê o slot para substituir e trata a entrada.
                         cout << "Selecione o slot ou item para substituir [ Caso ja tiver um item no lugar ele sera descartado ]: "<<endl;
                         cin >> slot;
                         TrataduasOpcao(slot, 4);
 
-                        adicionandoItemNaMochilaFINDBau(mochila, cinto, ItemMao, slot, statusPeso);
+                        adicionandoItemNaMochilaFINDBau(mochila, cinto, ItemMao, slot, statusPeso); // Adciona o item ao cinto.
 
                         system("cls");
                         return;
@@ -1988,6 +2008,7 @@ void TrataduasOpcao(int &opc, int max_opc)
     while(true);
 
 }
+
 void TratarErro() {
     cin.clear(); 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
