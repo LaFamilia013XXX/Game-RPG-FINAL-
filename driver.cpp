@@ -2020,15 +2020,15 @@ void TrataduasOpcao(int &opc, int max_opc)
 
 }
 
-void TratarErro() {
+void TratarErro() { //funcao que trata erros do cin
     cin.clear(); 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-
+// funcao para exportar um arquivo com o nome e nivel salvando do jogo
 void Escrever (string arq, string nome_usuario, int nivel_jogo)
 {
 
- ofstream high_score(arq,ios::out);
+ ofstream high_score(arq,ios::out); // funcao para arquivo de escrita
     if(high_score.is_open())
     {
         high_score <<"nome do Usuario : "<< nome_usuario <<"nivel que parou  "<< nivel_jogo<<" "<<endl;
@@ -2036,5 +2036,5 @@ void Escrever (string arq, string nome_usuario, int nivel_jogo)
         cout<< "Foi salvo com sucesso!."<<endl;
         return;
     }
-    else{cout<< "erro ao criar o arquivo"<<endl;}
+    else{cout<< "erro ao criar o arquivo"<<endl;} // se dar erro
 }
