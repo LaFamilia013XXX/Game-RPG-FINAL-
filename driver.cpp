@@ -2031,7 +2031,7 @@ void Escrever (string arq, string nome_usuario, int nivel_jogo)
  ofstream high_score(arq,ios::out);
     if(high_score.is_open())
     {
-        high_score << nome_usuario <<" "<< nivel_jogo<<" "<<endl;
+        high_score <<"nome do Usuario : "<< nome_usuario <<"nivel que parou  "<< nivel_jogo<<" "<<endl;
         high_score.close();
         cout<< "Foi salvo com sucesso!."<<endl;
         return;
