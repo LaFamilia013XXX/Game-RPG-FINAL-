@@ -2,6 +2,8 @@
 #include <rpg.h>
 #include <random>
 #include <cstdlib>
+#include <sstream>
+#include <fstream>
 
 /*
 O que falta fazer?
@@ -38,7 +40,8 @@ void apresentacaoInimigo(int &nivel_jogo);
 void apresentacaoCadaSQM(int &sqm_batalha, int &nivel_jogo);
 void fimDeJogo(string &nome);
 void TratarErro();
-void TrataduasOpcao(int &opc, int max_opc); 
+void TrataduasOpcao(int &opc, int max_opc);
+void Escrever (string arq, string nome_usuario, int nivel_jogo);
 
 int main(){
 
@@ -338,10 +341,10 @@ int main(){
             }
 
 
-        void Escrever("High_Scores", nome_usuario, nivel_jogo);
+        Escrever("High_Scores", nome_usuario, nivel_jogo);
 
             cout << "Infelizmente voce perdeu! Voce parou no nivel: " << nivel_jogo << " no sqm " << sqm_batalha << endl <<endl;
-            void Escrever("High_Scores", nome_usuario, nivel_jogo);
+            Escrever("High_Scores", nome_usuario, nivel_jogo);
             cout << "[Digite qualquer tecla continuar e pressione enter para continuar!]"<<endl;
             cin >> opc;
             TratarErro();
@@ -351,12 +354,12 @@ int main(){
         if(status_heroi == 1){
             system("cls");
             fimDeJogo(nome_usuario);
-            void Escrever("High_Scores", nome_usuario, nivel_jogo);
+            Escrever("High_Scores", nome_usuario, nivel_jogo);
 
             system("cls");
         }
 
-        void Escrever("High_Scores", nome_usuario, nivel_jogo);
+        Escrever("High_Scores", nome_usuario, nivel_jogo);
         
         cout << "Deseja iniciar novamente: " << nome_usuario << " ?" << endl;
         cout << "[1] Sair do game"<<endl<<"[2] Jogar novamente"<<endl<<endl;
@@ -754,7 +757,7 @@ void gerenciando_cinto(CriandoItem &Mao, List &cinto, Mochila &mochila){
 
         cout << "Selecione o slot do item: " <<endl;
         cin >> slot;
-        TrataduasOpcao(slot, 4);
+        TrataduasOpcao(slot, 5);
 
         if(slot == 5){
             system("cls");
